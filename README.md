@@ -9,4 +9,5 @@ Using your machine, add your name below to ensure you have everything set up
 correctly.
 
 * Alex [Sublime]
-* Brandon Groff [TextWrangler]* Brandon Chong [Sublime]
+* Brandon Groff [TextWrangler]
+* Brandon Chong [Sublime]
