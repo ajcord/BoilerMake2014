@@ -11,3 +11,4 @@ correctly.
 * Alex [Sublime]
 * Brandon Groff [TextWrangler]
 * Brandon Chong [Sublime]
+* Daniel Carballal
