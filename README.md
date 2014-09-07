@@ -8,6 +8,5 @@ Roll Call
 Using your machine, add your name below to ensure you have everything set up
 correctly.
 
-* Alex
-* Brandon Groff [TextWrangler]
-* Brandon Chong [Sublime]
+* Alex [Sublime]
+* Brandon Groff [TextWrangler]* Brandon Chong [Sublime]
