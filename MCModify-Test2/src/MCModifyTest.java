@@ -1,9 +1,9 @@
+import minecraft.Chunk;
 import minecraft.CompressionScheme;
 import minecraft.Inventory;
 import minecraft.Level;
 import nbt.Tag;
 import test.TestingUtils;
-
 import static minecraft.IDs.WrittenBook;
 
 import java.io.FileInputStream;
@@ -20,6 +20,8 @@ public class MCModifyTest
 		}
 
 		Level.Player player = level.Player();
+		player.PosY(100.0);
+		player.Flying(true);
 		Inventory i = player.Inventory();
 		Inventory.Item item = new Inventory.Item(WrittenBook, 0, 1);
 		item.Title("Ethonian Battle Book");
