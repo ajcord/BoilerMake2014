@@ -27,8 +27,6 @@ public class logicGate {
 	public static void placeANDGateAt(int x, int y, int z){
 		
 		BlockWriter.setBlock(x, y, z, IDs.Sandstone);
-		BlockWriter.setBlock(x+3, y+3, z+3, IDs.Sandstone);
-		/*
 		BlockWriter.setBlock(x+1, y, z, IDs.Sandstone);
 		BlockWriter.setBlock(x-1, y, z, IDs.Sandstone);
 		BlockWriter.setBlock(x-1, y, z-1, IDs.RedstoneWire);//Redstone wire on North side
@@ -36,19 +34,15 @@ public class logicGate {
 		BlockWriter.setBlock(x, y+1, z, IDs.RedstoneWire);
 		BlockWriter.setBlock(x+1, y+1, z, IDs.RedstoneTorch); //REDSTONE_TORCH_ON_GROUND
 		BlockWriter.setBlock(x-1, y+1, z, IDs.RedstoneTorch); //REDSTONE_TORCH_ON_GROUND
-		*/
+		
 		BlockWriter.setBlock(x, y, z+1, IDs.RedstoneTorch, REDSTONE_TORCH_ON_BLOCK_NORTH_SIDE);
-		BlockWriter.setBlock(x-1, y, z, IDs.RedstoneTorch, REDSTONE_TORCH_ON_BLOCK_EAST_SIDE);
-		BlockWriter.setBlock(x, y, z-1, IDs.RedstoneTorch, REDSTONE_TORCH_ON_BLOCK_SOUTH_SIDE);
-		BlockWriter.setBlock(x+1, y, z, IDs.RedstoneTorch, REDSTONE_TORCH_ON_BLOCK_WEST_SIDE);
-		BlockWriter.setBlock(x, y+1, z, IDs.RedstoneTorch);
-		BlockWriter.setBlock(x+3, y+2, z+3, IDs.RedstoneTorch, REDSTONE_TORCH_ON_BLOCK_BOTTOM);
-		//BlockWriter.setBlock(x, y, z+2, IDs.RedstoneWire);//Redstone wire on South, output
+		BlockWriter.setBlock(x, y, z+2, IDs.RedstoneWire);//Redstone wire on South, output
 	}
 	
 	public static void placeORGateAt(int x, int y, int z){
 		BlockWriter.setBlock(x, y, z, IDs.RedstoneWire); //connecting wire
 		BlockWriter.setBlock(x, y, z+1, IDs.RedstoneWire);
+		BlockWriter.setBlock(x-1, y, z, IDs.RedstoneWire);
 		BlockWriter.setBlock(x-1, y, z-1, IDs.RedstoneWire);
 		BlockWriter.setBlock(x+1, y, z-1, IDs.RedstoneWire);
 		BlockWriter.setBlock(x-1, y, z-2, IDs.RedstoneWire);

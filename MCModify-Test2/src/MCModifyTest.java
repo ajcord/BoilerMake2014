@@ -71,12 +71,12 @@ public class MCModifyTest
 		BlockWriter.setBlock(x, y, z-1, IDs.Lever, LEVER_BLOCK_TOP_FACING_SOUTH);
 		
 		
-		x=12;
+		x=12; y=56; z= 1;
 		logicGate.placeANDGateAt(x, y, z);
 		BlockWriter.setBlock(x+1, y, z-2, IDs.Lever, LEVER_BLOCK_TOP_FACING_SOUTH);
 		BlockWriter.setBlock(x-1, y, z-2, IDs.Lever, LEVER_BLOCK_TOP_FACING_SOUTH);
 		
-		x=18;
+		x=18; y=56; z= 1;
 		logicGate.placeORGateAt(x,y,z);
 		BlockWriter.setBlock(x+1, y, z-3, IDs.Lever, LEVER_BLOCK_TOP_FACING_SOUTH);
 		BlockWriter.setBlock(x-1, y, z-3, IDs.Lever, LEVER_BLOCK_TOP_FACING_SOUTH);
