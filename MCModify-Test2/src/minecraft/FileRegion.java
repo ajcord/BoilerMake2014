@@ -61,6 +61,7 @@ public class FileRegion extends Region
 				}
 			}
 		}
+		System.out.println("Couldn't find chunk at location " + pos.x + ", " + pos.z);
 		return null;
 	}
 	@Override
