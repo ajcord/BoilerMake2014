@@ -16,21 +16,25 @@ public class BlockWriter {
 	
 	public static void loadChunk(int x, int y, int z) {
 		try {
-			//Get the chunk position
-			int chunkX = x >> 4;
-			int chunkZ = z >> 4;
+			//Get the chunk position relative to the world
+			int chunkX = x / 16;
+			int chunkZ = z / 16;
 			
 			//Get the region number from chunk position
-			int regionX = chunkX >> 5;
-			int regionZ = chunkZ >> 5;
+			int regionX = chunkX / 32;
+			int regionZ = chunkZ / 32;
+			
+			//Convert the chunk position to relative to the region
+			chunkX %= 32;
+			chunkZ %= 32;
+			if (chunkX < 0) chunkX += 32;
+			if (chunkZ < 0) chunkZ += 32;
 			
 			//Get the block coordinate within the chunk
 			x %= 16;
 			z %= 16;
 			if (x < 0) x += 16;
 			if (z < 0) z += 16;
-			
-			System.out.println("Chunk: " + chunkX + " " + chunkZ);
 			
 			String filename = "region/r." + regionX + "." + regionZ + ".mca";
 			currentRegion = new FileRegion(new File(filename));
@@ -65,7 +69,6 @@ public class BlockWriter {
 			if (x < 0) x += 16;
 			if (z < 0) z += 16;
 			currentChunk.BlockID(x, y, z, blockID);
-			System.out.println("Coords: " + x + " " + y + " " + z);
 		}
 	}
 
