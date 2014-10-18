@@ -29,31 +29,31 @@ public class MCModifyTest
 		}
 		*/
 		
-		for (int k = 0; k < 12; k++) {
-			BlockWriter.loadChunk(k*16, 0, 0);
-			for (int x =1; x<8; x+=2){
-				BlockWriter.setBlock(x,56,1, IDs.Lever);
-				for (int z=1; z<2; z++){
-					BlockWriter.setBlock(x, 56, z, IDs.RedstoneWire);
-					if (z==3){
-						BlockWriter.setBlock(3, 56, z, IDs.Sandstone);
-						BlockWriter.setBlock(5, 56, z, IDs.Sandstone);
-						BlockWriter.setBlock(7, 56, z, IDs.Sandstone);
-						BlockWriter.setBlock(3, 57, z, IDs.RedstoneWire);
-						BlockWriter.setBlock(5, 57, z, IDs.RedstoneWire);
-						BlockWriter.setBlock(7, 57, z, IDs.RedstoneWire);
-					}
-					if(z==4){
-						BlockWriter.setBlock(3, 57, z, IDs.Sandstone);
-						BlockWriter.setBlock(5, 57, z, IDs.Sandstone);
-						BlockWriter.setBlock(7, 57, z, IDs.Sandstone);
-						BlockWriter.setBlock(3, 58, z, IDs.RedstoneWire);
-						BlockWriter.setBlock(5, 58, z, IDs.RedstoneWire);
-						BlockWriter.setBlock(7, 58, z, IDs.RedstoneWire);
-					}
+		BlockWriter.loadChunk(0, 0, 0);
+		for (int x = 1; x < 8; x += 2) {
+			byte LEVER_BLOCK_TOP_FACING_SOUTH = 5;
+			BlockWriter.setBlock(x, 56, 0, IDs.Lever, LEVER_BLOCK_TOP_FACING_SOUTH);
+			for (int z = 1; z < 5; z++) {
+				BlockWriter.setBlock(x, 56, z, IDs.RedstoneWire);
+				if (z == 3) {
+					BlockWriter.setBlock(3, 56, z, IDs.Sandstone);
+					BlockWriter.setBlock(5, 56, z, IDs.Sandstone);
+					BlockWriter.setBlock(7, 56, z, IDs.Sandstone);
+					BlockWriter.setBlock(3, 57, z, IDs.RedstoneWire);
+					BlockWriter.setBlock(5, 57, z, IDs.RedstoneWire);
+					BlockWriter.setBlock(7, 57, z, IDs.RedstoneWire);
 				}
+				if (z == 4) {
+					BlockWriter.setBlock(3, 57, z, IDs.Sandstone);
+					BlockWriter.setBlock(5, 57, z, IDs.Sandstone);
+					BlockWriter.setBlock(7, 57, z, IDs.Sandstone);
+					BlockWriter.setBlock(3, 58, z, IDs.RedstoneWire);
+					BlockWriter.setBlock(5, 58, z, IDs.RedstoneWire);
+					BlockWriter.setBlock(7, 58, z, IDs.RedstoneWire);
 				}
 			}
+		}
+		BlockWriter.saveChunk();
 			
 		/*
 		final Level level;

@@ -72,6 +72,13 @@ public class BlockWriter {
 		}
 	}
 
+	public static void setBlock(int x, int y, int z, short blockID, byte data) {
+		setBlock(x, y, z, blockID);
+		if (currentChunk != null) {
+			currentChunk.BlockData(x, y, z, data);
+		}
+	}
+
 	private static void copyFile(String sourceName, String targetName)
 			throws IOException {
 		File sourceFile = new File(sourceName);
