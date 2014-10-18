@@ -15,22 +15,17 @@ public class MCModifyTest
 {
 	public static void main(String[] args) throws Throwable
 	{
-		/*
-		BlockWriter.loadChunk(0, 56, 0);
-		BlockWriter.setBlock(0, 56, 0, IDs.BlockOfGold);
-		BlockWriter.saveChunk();
-		*/
 		
-		for (int k = 0; k < 12; k++) {
-			BlockWriter.loadChunk(k*16, 0, 0);
-			//System.out.println("Loading Chunk: " + k);
-			for (int i = 0; i < 16; i++) {
-				for (int j = 0; j < 16; j++) {
-					BlockWriter.setBlock(k*16 + i,  56, j, IDs.BlockOfEmerald);
+		for (int k = 20; k < 50; k++) {
+			for (int m = 20; m < 50; m++) {
+				BlockWriter.loadChunk(k*16, 0, m*16);
+				for (int i = 0; i < 16; i++) {
+					for (int j = 0; j < 16; j++) {
+						BlockWriter.setBlock(k*16 + i, 56, m*16 + j, IDs.BlockOfEmerald);
+					}
 				}
+				BlockWriter.saveChunk();
 			}
-			BlockWriter.saveChunk();
-			//System.out.println("Saved Chunk: " + k);
 		}
 		
 		for (int k = 0; k < 12; k++) { //simple change
