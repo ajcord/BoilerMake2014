@@ -1,10 +1,12 @@
 import minecraft.Chunk;
 import minecraft.CompressionScheme;
+import minecraft.IDs;
 import minecraft.Inventory;
 import minecraft.Level;
 import nbt.Tag;
 import test.TestingUtils;
 import static minecraft.IDs.WrittenBook;
+import minecraft.BlockWriter;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -13,6 +15,14 @@ public class MCModifyTest
 {
 	public static void main(String[] args) throws Throwable
 	{
+		for (int k = 0; k < 12; k++) {
+			for (int i = 0; i < 16; i++) {
+				for (int j = 0; j < 16; j++) {
+					BlockWriter.setBlock(16*k + i,  56, j, IDs.BlockOfEmerald);
+				}
+			}
+		}
+		/*
 		final Level level;
 		
 		FileInputStream fis = new FileInputStream(TestingUtils.getInputFile("level.dat"));
@@ -39,5 +49,6 @@ public class MCModifyTest
 		{
 			level.ToNBT("").serialize(CompressionScheme.GZip.getOutputStream(fos));
 		}
+		*/
 	}
 }

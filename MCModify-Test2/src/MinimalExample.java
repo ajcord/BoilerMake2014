@@ -26,19 +26,21 @@ public class MinimalExample {
 			newregion.setChunk(loc, chunk);
 			System.out.println("Saved");*/
 			
-			for (int x = 0; x < 32; x++) {
-				for (int y = 0; y < 32; y++) {
+			for (int x = 10; x < 32; x++) {
+				for (int y = 10; y < 32; y++) {
 					LocChunkInRegion loc = new LocChunkInRegion(x, y);
 					Chunk chunk = newregion.getChunk(loc);
 					
-					for (int k = 0; k < 16; k++) {
-						for (int k2 = 0; k2 < 16; k2++) {
-							chunk.BlockID(k, 57, k2, IDs.Grass);
+					//if (chunk != null) {
+						for (int k = 0; k < 16; k++) {
+							for (int k2 = 0; k2 < 16; k2++) {
+								chunk.BlockID(k, 57, k2, IDs.Dirt);
+							}
 						}
-					}
-					
-					newregion.setChunk(loc, chunk);
-					System.out.println("Wrote chunk at location " + loc.x + ", " + loc.z);
+						
+						newregion.setChunk(loc, chunk);
+						System.out.println("Wrote chunk at location " + loc.x + ", " + loc.z);
+					//}
 				}
 			}
 		} catch (Exception e) {
