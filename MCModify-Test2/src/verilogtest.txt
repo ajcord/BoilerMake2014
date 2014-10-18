@@ -1,0 +1,11 @@
+module sc_block(a,d,b,e)
+	output	a,d;
+	input	b,e;
+	wire	w1,w2,w3,w4;
+	not n3(w1,e);
+	not n1(w2,b);
+	or	o1(a,w1,b);
+	not n2(w3,w1);
+	sbox s2(w4,b,e,w3);
+	and a2(d,w2,w3);
+endmodule

@@ -1,0 +1,7 @@
+module sbox(e,f,g,h)
+	output	e;
+	input	f,g,h;
+	wire	l1;
+	and		a7(l1,f,g);
+	not		n7(e,l1);
+endmodule
