@@ -13,6 +13,16 @@ import java.io.FileOutputStream;
 
 public class MCModifyTest
 {
+	final static byte LEVER_BLOCK_BOTTOM_FACING_EAST=0;
+	final static byte LEVER_BLOCK_SIDE_FACING_EAST=1;
+	final static byte LEVER_BLOCK_SIDE_FACING_WEST=2;
+	final static byte LEVER_BLOCK_SIDE_FACING_SOUTH=3;
+	final static byte LEVER_BLOCK_SIDE_FACING_NORTH=4;
+	final static byte LEVER_BLOCK_TOP_FACING_EAST=5;
+	final static byte LEVER_BLOCK_TOP_FACING_SOUTH=5;
+	final static byte LEVER_BLOCK_BOTTOM_FACING_SOUTH=7;
+	final static byte LEVER_ACTIVE=8;
+	
 	public static void main(String[] args) throws Throwable
 	{
 		/*
@@ -31,7 +41,7 @@ public class MCModifyTest
 		
 		BlockWriter.loadChunk(0, 0, 0);
 		for (int x = 1; x < 8; x += 2) {
-			byte LEVER_BLOCK_TOP_FACING_SOUTH = 5;
+			
 			BlockWriter.setBlock(x, 56, 0, IDs.Lever, LEVER_BLOCK_TOP_FACING_SOUTH);
 			for (int z = 1; z < 5; z++) {
 				BlockWriter.setBlock(x, 56, z, IDs.RedstoneWire);
@@ -53,7 +63,10 @@ public class MCModifyTest
 				}
 			}
 		}
-		logicGate.placeNOTGateAt(12,56,1);
+		int x= 12; int y=56; int z= 1;
+		
+		logicGate.placeNOTGateAt(x,y,z);
+		BlockWriter.setBlock(x, y, z-1, IDs.Lever, LEVER_BLOCK_SIDE_FACING_NORTH);
 		BlockWriter.saveChunk();
 			
 		/*

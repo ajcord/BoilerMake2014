@@ -28,7 +28,7 @@ public class logicGate {
 	
 	public static void placeNOTGateAt(int x, int y, int z){
 		BlockWriter.setBlock(x, y, z+1, IDs.Sandstone);
-		BlockWriter.setBlock(x, y, z, IDs.Lever, LEVER_BLOCK_SIDE_FACING_NORTH);
+		BlockWriter.setBlock(x, y, z, IDs.RedstoneWire);
 		BlockWriter.setBlock(x, y, z+2, IDs.RedstoneTorch, LEVER_BLOCK_SIDE_FACING_SOUTH);
 		BlockWriter.setBlock(x, y, z+3, IDs.RedstoneWire);
 	}
