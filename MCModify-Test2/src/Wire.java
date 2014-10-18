@@ -15,10 +15,13 @@ public class Wire {
 		super();
 		this.name = name;
 		this.comingFrom = comingFrom;
+		this.goingTo = new ArrayList<Module>();
 	}
 	public Wire(String name){
 		super();
 		this.name = name;
+		this.goingTo = new ArrayList<Module>();
+		comingFrom = null;
 	}
 	public Wire(){
 		System.out.println("We may have a problem");
