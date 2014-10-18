@@ -15,7 +15,11 @@ public class BlockWriter {
 	private static Region currentRegion;
 	
 	public static void loadChunk(int x, int y, int z) {
+		if(x<0 || y<0 || z<0){
+			System.out.println("why are we dealing with negative coords? The world is infinite");
+		}
 		try {
+<<<<<<< HEAD
 			//Get the chunk position relative to the world
 			int chunkX = x / 16;
 			int chunkZ = z / 16;
@@ -27,6 +31,15 @@ public class BlockWriter {
 			//Convert the chunk position to relative to the region
 			chunkX %= 32;
 			chunkZ %= 32;
+=======
+			//Get the region number from the x, z coordinates
+			int regionX = x >> 5;
+			int regionZ = z >> 5;
+			
+			//Get the chunk position within the region
+			int chunkX = (x >> 4) % 32;
+			int chunkZ = (z >> 4) % 32;
+>>>>>>> FETCH_HEAD
 			if (chunkX < 0) chunkX += 32;
 			if (chunkZ < 0) chunkZ += 32;
 			
@@ -35,10 +48,14 @@ public class BlockWriter {
 			z %= 16;
 			if (x < 0) x += 16;
 			if (z < 0) z += 16;
+<<<<<<< HEAD
 			
+=======
+>>>>>>> FETCH_HEAD
 			String filename = "region/r." + regionX + "." + regionZ + ".mca";
 			currentRegion = new FileRegion(new File(filename));
 			currentLoc = new LocChunkInRegion(chunkX, chunkZ);
+			System.out.println("Loaded chunk at location " + currentLoc.x + ", " + currentLoc.z);
 			currentChunk = currentRegion.getChunk(currentLoc);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -63,12 +80,13 @@ public class BlockWriter {
 		}
 		
 		if (currentChunk != null) {
-			//Get the block coordinate within the chunk
-			x %= 16;
-			z %= 16;
-			if (x < 0) x += 16;
-			if (z < 0) z += 16;
 			currentChunk.BlockID(x, y, z, blockID);
+<<<<<<< HEAD
+=======
+		}
+		if(currentChunk == null){
+			System.out.print("You are trying to write into a null chunk !!!");
+>>>>>>> FETCH_HEAD
 		}
 	}
 
