@@ -1,7 +1,12 @@
 MCVerilog
 =========
 
-A Verilog to Minecraft Compiler in Java
+Our BoilerMake 2014 project
+
+What?
+-----
+
+MCVerilog is a Verilog to Minecraft compiler. Given a source file conforming to a subset of the Verilog syntax, the project generates a Minecraft world containing a redstone circuit that models the hardware described by the source file.
 
 Why?
 ----
@@ -21,7 +26,7 @@ How?
 * Magic
 
 Who?
-------
+----
 * Alex Cordonnier, UIUC
 * Brandon Chong, UIUC
 * Brandon Groff, Ball State

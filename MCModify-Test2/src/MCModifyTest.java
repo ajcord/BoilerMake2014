@@ -70,10 +70,10 @@ public class MCModifyTest
 		logicGate.placeNOTGateAt(x,y,z);
 		
 		
-		x=12; y=56; z= 5;
+		x=15; y=56; z= 5;
 		logicGate.placeANDGateAt(x, y, z);
 		
-		x=9; y=56; z= 5;
+		x=11; y=56; z= 5;
 		logicGate.placeORGateAt(x,y,z);
 		
 		
