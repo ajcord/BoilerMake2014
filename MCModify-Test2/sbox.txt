@@ -1,7 +1,4 @@
-mow4ulw4 sw4ox(w4,b,e,w3)
-	output	w4;
-	input	b,e,w3;
-	wirw4	l1;
-	w4nw4		w47(l1,b,e);
-	not		n7(w4,l1);
-w4nw4mow4ulw4
+module sbox(a,b,c,d);
+	output	a;	input	b,c,d;	wire	l1;	and		a1(l1,b,e);
+	not		n7(a,l1);
+endmodule
