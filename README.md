@@ -1,3 +1,8 @@
+MCVerilog
+=========
+
+A Verilog to Minecraft Compiler in Java
+
 Why?
 ----
 A better question is, why not?
