@@ -33,7 +33,7 @@ public class MCModifyTest
 			//System.out.println("Saved Chunk: " + k);
 		}
 		
-		for (int k = 0; k < 12; k++) {
+		for (int k = 0; k < 12; k++) { //simple change
 			BlockWriter.loadChunk(k*16, 0, 0);
 			for (int x =1; x<8; x+=2){
 				BlockWriter.setBlock(x,1,1, IDs.Lever);
