@@ -108,7 +108,7 @@ public class Module {
 					}
 				}
 				//Now I have the module declaration line
-				String [] newParams = line.substring(line.indexOf("(")+1, linetemp.indexOf(")")).split(",");
+				String [] newParams = line.substring(line.indexOf("(")+1, line.indexOf(")")).split(",");
 				//Find and replace one at a time
 				Path path = Paths.get(filename);
 				Charset charset = StandardCharsets.UTF_8;
