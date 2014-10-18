@@ -15,7 +15,7 @@ public class MCModifyTest
 {
 	public static void main(String[] args) throws Throwable
 	{
-		
+		/*
 		for (int k = 20; k < 50; k++) {
 			for (int m = 20; m < 50; m++) {
 				BlockWriter.loadChunk(k*16, 0, m*16);
@@ -27,6 +27,7 @@ public class MCModifyTest
 				BlockWriter.saveChunk();
 			}
 		}
+		*/
 		
 		for (int k = 0; k < 12; k++) {
 			BlockWriter.loadChunk(k*16, 0, 0);
