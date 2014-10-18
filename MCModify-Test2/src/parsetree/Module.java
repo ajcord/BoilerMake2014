@@ -99,7 +99,7 @@ public class Module {
 				// Figure out what my wire names are after I step into function
 				BufferedReader brr = null;
 				try {
-					brr = new BufferedReader(new FileReader(filename));
+					brr = new BufferedReader(new FileReader(newFile));
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -118,10 +118,11 @@ public class Module {
 						.split(",");
 				// Find and replace one at a time
 				while (readline != null) {
-					if(readline.indexOf("(")!=-1) printline = replaceString(readline,"(",newParams,params);
-					else if(readline.indexOf("output")!=-1) printline = replaceString(readline,"output",newParams,params);
-					else if(readline.indexOf("input")!=-1) printline = replaceString(readline,"input",newParams,params);
-					else if(readline.indexOf("wire")!=-1) printline = replaceString(readline,"wire",newParams,params);
+					System.out.println("Parsing:" + readline);
+					if(readline.indexOf("(")!=-1) printline += replaceString(readline,"(",newParams,params);
+					else if(readline.indexOf("output")!=-1) printline += replaceString(readline,"output",newParams,params);
+					else if(readline.indexOf("input")!=-1) printline += replaceString(readline,"input",newParams,params);
+					else if(readline.indexOf("wire")!=-1) printline += replaceString(readline,"wire",newParams,params);
 					else printline += readline;
 					printline+='\n';
 					try {
@@ -134,6 +135,7 @@ public class Module {
 				//Write to the file
 				try {
 					PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(newFile)));
+					System.out.println("Writing the following to the file\n"+printline);
 					pw.println(printline);
 					pw.close();
 				} catch (IOException e) {
@@ -165,7 +167,7 @@ public class Module {
 		String left = readline.substring(0, readline.indexOf(deliminator));
 		String right = readline.substring(readline.indexOf(deliminator));
 		for (int i = 0; i < newParams.length; i++) {
-			right.replaceAll(newParams[i], params[i]);
+			right = right.replaceAll(newParams[i], params[i]);
 		}
 		return left + right;
 	}

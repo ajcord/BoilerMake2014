@@ -1,4 +1,10 @@
-module sbox(a,b,c,d);
-	output	a;	input	b,c,d;	wire	l1;	and		a1(l1,b,e);
-	not		n7(a,l1);
+module sbox(w4,b,e,w3);
+	output	w4;
+	input	b,e,w3;
+	wire	l1;
+	and		a1(l1,b,e);
+	not		n7(w4,l1);
 endmodule
+
+
+
