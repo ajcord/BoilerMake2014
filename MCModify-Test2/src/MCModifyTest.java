@@ -18,8 +18,8 @@ public class MCModifyTest
 	final static byte LEVER_BLOCK_SIDE_FACING_WEST=2;
 	final static byte LEVER_BLOCK_SIDE_FACING_SOUTH=3;
 	final static byte LEVER_BLOCK_SIDE_FACING_NORTH=4;
-	final static byte LEVER_BLOCK_TOP_FACING_EAST=5;
-	final static byte LEVER_BLOCK_TOP_FACING_SOUTH=6;
+	final static byte LEVER_BLOCK_TOP_FACING_SOUTH=5;
+	final static byte LEVER_BLOCK_TOP_FACING_EAST=6;
 	final static byte LEVER_BLOCK_BOTTOM_FACING_SOUTH=7;
 	final static byte LEVER_ACTIVE=8;
 	
@@ -65,18 +65,18 @@ public class MCModifyTest
 			}
 		}
 		*/
-		int x= 6; int y=56; int z= 1;
+		int x= 6; int y=56; int z= 5;
 		
 		logicGate.placeNOTGateAt(x,y,z);
-		BlockWriter.setBlock(x, y, z-1, IDs.Lever, LEVER_BLOCK_TOP_FACING_SOUTH);
+		BlockWriter.setBlock(x, y, z-1, IDs.Lever, LEVER_BLOCK_TOP_FACING_EAST);
 		
 		
-		x=12; y=56; z= 1;
+		x=12; y=56; z= 5;
 		logicGate.placeANDGateAt(x, y, z);
 		BlockWriter.setBlock(x+1, y, z-2, IDs.Lever, LEVER_BLOCK_TOP_FACING_SOUTH);
 		BlockWriter.setBlock(x-1, y, z-2, IDs.Lever, LEVER_BLOCK_TOP_FACING_SOUTH);
 		
-		x=18; y=56; z= 1;
+		x=9; y=56; z= 5;
 		logicGate.placeORGateAt(x,y,z);
 		BlockWriter.setBlock(x+1, y, z-3, IDs.Lever, LEVER_BLOCK_TOP_FACING_SOUTH);
 		BlockWriter.setBlock(x-1, y, z-3, IDs.Lever, LEVER_BLOCK_TOP_FACING_SOUTH);

@@ -9,8 +9,8 @@ public class logicGate {
 	final static byte LEVER_BLOCK_SIDE_FACING_WEST=2;
 	final static byte LEVER_BLOCK_SIDE_FACING_SOUTH=3;
 	final static byte LEVER_BLOCK_SIDE_FACING_NORTH=4;
-	final static byte LEVER_BLOCK_TOP_FACING_EAST=5;
-	final static byte LEVER_BLOCK_TOP_FACING_SOUTH=6;
+	final static byte LEVER_BLOCK_TOP_FACING_SOUTH=5;
+	final static byte LEVER_BLOCK_TOP_FACING_EAST=6;
 	final static byte LEVER_BLOCK_BOTTOM_FACING_SOUTH=7;
 	final static byte LEVER_ACTIVE=8;
 	final static byte REDSTONE_TORCH_ON_GROUND=0;
