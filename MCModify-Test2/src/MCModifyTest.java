@@ -32,6 +32,33 @@ public class MCModifyTest
 			BlockWriter.saveChunk();
 			//System.out.println("Saved Chunk: " + k);
 		}
+		
+		for (int k = 0; k < 12; k++) {
+			BlockWriter.loadChunk(k*16, 0, 0);
+			for (int x =1; x<8; x+=2){
+				BlockWriter.setBlock(x,1,1, IDs.Lever);
+				for (int z=1; z<2; z++){
+					BlockWriter.setBlock(x, 1, z, IDs.RedstoneWire);
+					if (z==3){
+						BlockWriter.setBlock(3, 1, z, IDs.Sandstone);
+						BlockWriter.setBlock(5, 1, z, IDs.Sandstone);
+						BlockWriter.setBlock(7, 1, z, IDs.Sandstone);
+						BlockWriter.setBlock(3, 2, z, IDs.RedstoneWire);
+						BlockWriter.setBlock(5, 2, z, IDs.RedstoneWire);
+						BlockWriter.setBlock(7, 2, z, IDs.RedstoneWire);
+					}
+					if(z==4){
+						BlockWriter.setBlock(3, 2, z, IDs.Sandstone);
+						BlockWriter.setBlock(5, 2, z, IDs.Sandstone);
+						BlockWriter.setBlock(7, 2, z, IDs.Sandstone);
+						BlockWriter.setBlock(3, 3, z, IDs.RedstoneWire);
+						BlockWriter.setBlock(5, 3, z, IDs.RedstoneWire);
+						BlockWriter.setBlock(7, 3, z, IDs.RedstoneWire);
+					}
+				}
+				}
+			}
+			
 		/*
 		final Level level;
 		
@@ -51,7 +78,7 @@ public class MCModifyTest
 		Inventory.Item item = new Inventory.Item(WrittenBook, 0, 1);
 		item.Title("Ethonian Battle Book");
 		item.Author("Vechs");
-		item.Pages().add("§4As you hold this book, you feel the power to §lincenerate§r§4 your enemies!");
+		item.Pages().add("��4As you hold this book, you feel the power to ��lincenerate��r��4 your enemies!");
 		item.EnchantLevel(Inventory.Item.Enchantment.FireAspect, (short)2);
 		i.Item(7, item);
 
