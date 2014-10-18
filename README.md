@@ -1,13 +1,12 @@
-BoilerMake2014
-==============
-
-A Verilog compiler for Minecraft
-
 Why?
 ----
 A better question is, why not?
 
-If you need a better answer than that, then you're not really the target audience of this project. That said, if we get this project off the ground, it will make it exponentially easier to build complicated redstone circuits in Minecraft. Imagine writing some Verilog and running it through a compiler and having a working redstone circuit, rather than spending countless hours building it manually in Minecraft.
+If you need a better answer than that, then you're not really the target audience of this project.
+
+While taking Computer Architecture at UIUC and Ball State, our team was inspired to use Verilog HDL to generate redstone circuits in Minecraft. Verilog is a hardware description language that describes how electrical components are wired; our project parses Verilog source files to build equivalent circuits within Minecraft.
+
+We're most proud of the many potential uses for this project. Imagine writing a processor in Verilog and running it through a compiler and having a working redstone circuit, rather than spending countless hours building it manually in Minecraft. Our project will greatly accelerate development of amazing Minecraft projects.
 
 How?
 ----
@@ -15,3 +14,10 @@ How?
 * [MCModify](https://github.com/LB--/MCModify) - modified to work in our project
 * 36 sleepless hours at [BoilerMake](http://boilermake.org)
 * Magic
+
+Who?
+------
+* Alex Cordonnier, UIUC
+* Brandon Chong, UIUC
+* Brandon Groff, Ball State
+* Daniel Carballal, UIUC
