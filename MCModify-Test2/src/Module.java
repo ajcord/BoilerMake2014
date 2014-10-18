@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Module {
 	static ArrayList<ArrayList<Module>> moduleLevels;
-	//static ArrayList<Wire> allWires;
+	static ArrayList<Wire> allWires;
 	int level;
 	int type =-1; // 1 is AND, 2 is OR, 3 is NOT
 	//int width; // Amount of levels it takes up (1 for primitives, more for complex)
@@ -69,13 +69,44 @@ public class Module {
 				String inputname1 = line.substring(j+1,i);
 				j = line.indexOf(",");
 				String inputname2 = line.substring(i+1,j);
+				Wire leaving = findWire(outputname);
+				Wire firstInput = findWire(inputname1);
+				Wire secondInput = findWire(inputname2);//WHAT HAPPENS IF THESE ARE -1?
+				ArrayList<Wire> temp = new ArrayList<Wire>();
+				temp.add(firstInput);
+				temp.add(secondInput);
+				Module currentAnd = new Module(mod,temp, leaving,this.level+1,1);
 				
 			}
 			else if(line.substring(0,2).equals("or")){
-				
+				int i = line.indexOf("(");
+				String mod = line.substring(3,i);
+				int j = line.indexOf(",");
+				String outputname = line.substring(i+1,j);
+				i = line.indexOf(",");
+				String inputname1 = line.substring(j+1,i);
+				j = line.indexOf(",");
+				String inputname2 = line.substring(i+1,j);
+				Wire leaving = findWire(outputname);
+				Wire firstInput = findWire(inputname1);
+				Wire secondInput = findWire(inputname2);//WHAT HAPPENS IF THESE ARE -1?
+				ArrayList<Wire> temp = new ArrayList<Wire>();
+				temp.add(firstInput);
+				temp.add(secondInput);
+				Module currentAnd = new Module(mod,temp, leaving,this.level+1,2);
 			}
 			else if(line.substring(0,3).equals("not")){
-				
+				int i = line.indexOf("(");
+				String mod = line.substring(3,i);
+				int j = line.indexOf(",");
+				String outputname = line.substring(i+1,j);
+				i = line.indexOf(",");
+				String inputname1 = line.substring(j+1,i);
+				Wire leaving = findWire(outputname);
+				Wire firstInput = findWire(inputname1);
+				ArrayList<Wire> temp = new ArrayList<Wire>();
+				temp.add(firstInput);
+				Module currentAnd = new Module(mod,temp, leaving,this.level+1,3);
 			}
 			else if(line.substring(0,5).equals("input")){
 				
@@ -99,9 +130,9 @@ public class Module {
 	}
 /* if -1, no wire. If not, returns # of wire*/
 
-	public int findWire(String name){
+	public Wire findWire(String name){
 		for(int i = 0; i < allWires.size(); i++)
-			if(((allWires.get(i)).id).equals(name)) return i;
-		return -1;
+			if(((allWires.get(i)).id).equals(name)) return allWires.get(i);
+		return new Wire();
 	}
 }
