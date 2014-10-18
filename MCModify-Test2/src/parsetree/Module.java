@@ -118,18 +118,12 @@ public class Module {
 						.split(",");
 				// Find and replace one at a time
 				while (readline != null) {
-					if(readline.indexOf("(")!=-1){
-						// Gets everything to the left of the open parenthesis
-						String left = readline.substring(0, readline.indexOf("("));
-						String right = readline.substring(readline.indexOf("("));
-						for (int i = 0; i < newParams.length; i++) {
-							right.replaceAll(newParams[i], params[i]);
-						}
-						printline += left + right+'\n';
-					}
-					else{
-						printline += readline;
-					}
+					if(readline.indexOf("(")!=-1) printline = replaceString(readline,"(",newParams,params);
+					else if(readline.indexOf("output")!=-1) printline = replaceString(readline,"output",newParams,params);
+					else if(readline.indexOf("input")!=-1) printline = replaceString(readline,"input",newParams,params);
+					else if(readline.indexOf("wire")!=-1) printline = replaceString(readline,"wire",newParams,params);
+					else printline += readline;
+					printline+='\n';
 					try {
 						readline = brr.readLine();
 					} catch (IOException e) {
@@ -165,36 +159,62 @@ public class Module {
 		 */
 		recurseLongest(head);
 	}
+	
+	public String replaceString(String readline, String deliminator,String[] newParams,String[] params){
+		// Gets everything to the left of the open parenthesis
+		String left = readline.substring(0, readline.indexOf(deliminator));
+		String right = readline.substring(readline.indexOf(deliminator));
+		for (int i = 0; i < newParams.length; i++) {
+			right.replaceAll(newParams[i], params[i]);
+		}
+		return left + right;
+	}
 
 	public Wire findWire(String name) {
-		System.out.println();
 		for (int i = 0; i < wires.size(); i++)
-			if (((wires.get(i)).name).equals(name))
+			if ((wires.get(i)).name.equals(name)){
+				System.out.println("Found wire "+ wires.get(i).name);
 				return wires.get(i);
+				
+			}
+		System.out.println("Did not find Wire");
 		return new Wire();
 	}
 
 	public Module makePrimative(String line, String gate, int type) {// or
-																		// o1(w1,b,c);
+		System.out.print("Going to find wire " + name + "\nCurrent wires are: ");
+		for(int a = 0; a < wires.size(); a++)
+			System.out.print(wires.get(a).name + ", ");
+		System.out.println();
 		int i = line.indexOf("(");
-		String mod = line.substring(gate.length(), i);
-		line = line.substring(i + 1);
+		String mod = line.substring(gate.length(),i);
+		line = line.substring(i+1);
+		i = line.indexOf(",");
+		String output = line.substring(0,i);
 		int k = line.indexOf(",");
-		String output = line.substring(0, k);
+		String out = line.substring(0,k);
 		i = line.indexOf(")");
-		line = line.substring(k + 1, i);
+		line = line.substring(0,i);
+		line = line.substring(k+1,i);
 		ArrayList<Wire> inputs = createWires(line);
+		System.out.print("Going to find wire " + out + "\nCurrent wires are: ");
+		for(int a = 0; a < wires.size(); a++)
+			System.out.print(wires.get(a).name + ", ");
+		System.out.println();
 		Wire leaving = findWire(output);
 		ArrayList<Wire> coming = new ArrayList<Wire>();
-		for (i = 0; i < inputs.size(); i++) {
+		for(i=0; i< inputs.size();i++){
+			System.out.println("Wire is: " + inputs.get(i).name);
 			coming.add(findWire((inputs.get(i)).name));
 		}
-		Module primative = new Module(mod, coming, leaving, this.level + 1,
-				type);
-		// if(isHead(primative)) heads.add(primative);
+		Module primative = new Module(mod,coming, leaving,this.level+1,type);
 		modules.add(primative);
-		for (i = 0; i < inputs.size(); i++) {
-			(((primative.input).get(i)).goingTo).add(primative);
+		for(i = 0; i < primative.input.size(); i++){
+			System.out.println("primative.input.size() = " + primative.input.size());
+			System.out.println("i = " + i);
+			Wire j = (primative.input).get(i);
+			ArrayList<Module> m = j.goingTo;
+			m.add(primative);
 		}
 		leaving.comingFrom = primative;
 		return primative;
@@ -216,7 +236,7 @@ public class Module {
 		ArrayList<Wire> nwires = new ArrayList<Wire>();
 		String[] split = line.split(",");
 		for (int i = 0; i < split.length; i++) {
-			nwires.add(new Wire(split[i]));
+			nwires.add(new Wire(split[i]));//How do we make sure we do not create 2 wires
 		}
 		return nwires;
 	}/*
