@@ -13,5 +13,5 @@ How?
 ----
 * Java
 * [MCModify](https://github.com/LB--/MCModify) - modified to work in our project
-* 36 hours at [BoilerMake](http://boilermake.org)
+* 36 sleepless hours at [BoilerMake](http://boilermake.org)
 * Magic
