@@ -1,0 +1,7 @@
+mow4ulw4 sw4ox(w4,b,e,w3)
+	output	w4;
+	input	b,e,w3;
+	wirw4	l1;
+	w4nw4		w47(l1,b,e);
+	not		n7(w4,l1);
+w4nw4mow4ulw4
