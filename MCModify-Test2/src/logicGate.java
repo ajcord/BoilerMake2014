@@ -25,36 +25,47 @@ public class logicGate {
 	}
 	
 	public static void placeANDGateAt(int x, int y, int z){
+		if( x<0 || y<0 || z<0);
+		else{
+			BlockWriter.setBlock(x+1, y, z+1, IDs.Sandstone);
+			BlockWriter.setBlock(x+2, y, z+1, IDs.Sandstone);
+			BlockWriter.setBlock(x, y, z+1, IDs.Sandstone);
+			BlockWriter.setBlock(x, y, z, IDs.RedstoneWire);//Redstone wire on North side
+			BlockWriter.setBlock(x+2, y, z, IDs.RedstoneWire);
+			BlockWriter.setBlock(x+1, y+1, z+1, IDs.RedstoneWire);
+			BlockWriter.setBlock(x+2, y+1, z+1, IDs.RedstoneTorch); //REDSTONE_TORCH_ON_GROUND
+			BlockWriter.setBlock(x, y+1, z+1, IDs.RedstoneTorch); //REDSTONE_TORCH_ON_GROUND
+			
+			BlockWriter.setBlock(x+1, y, z+1, IDs.RedstoneTorch, REDSTONE_TORCH_ON_BLOCK_NORTH_SIDE);
+			BlockWriter.setBlock(x+1, y, z+3, IDs.RedstoneWire);//Redstone wire on South, output
+		}
 		
-		BlockWriter.setBlock(x, y, z, IDs.Sandstone);
-		BlockWriter.setBlock(x+1, y, z, IDs.Sandstone);
-		BlockWriter.setBlock(x-1, y, z, IDs.Sandstone);
-		BlockWriter.setBlock(x-1, y, z-1, IDs.RedstoneWire);//Redstone wire on North side
-		BlockWriter.setBlock(x+1, y, z-1, IDs.RedstoneWire);
-		BlockWriter.setBlock(x, y+1, z, IDs.RedstoneWire);
-		BlockWriter.setBlock(x+1, y+1, z, IDs.RedstoneTorch); //REDSTONE_TORCH_ON_GROUND
-		BlockWriter.setBlock(x-1, y+1, z, IDs.RedstoneTorch); //REDSTONE_TORCH_ON_GROUND
-		
-		BlockWriter.setBlock(x, y, z+1, IDs.RedstoneTorch, REDSTONE_TORCH_ON_BLOCK_NORTH_SIDE);
-		BlockWriter.setBlock(x, y, z+2, IDs.RedstoneWire);//Redstone wire on South, output
 	}
 	
 	public static void placeORGateAt(int x, int y, int z){
-		BlockWriter.setBlock(x, y, z, IDs.RedstoneWire); //connecting wire
-		BlockWriter.setBlock(x, y, z+1, IDs.RedstoneWire);
-		BlockWriter.setBlock(x-1, y, z, IDs.RedstoneWire);
-		BlockWriter.setBlock(x-1, y, z-1, IDs.RedstoneWire);
-		BlockWriter.setBlock(x+1, y, z-1, IDs.RedstoneWire);
-		BlockWriter.setBlock(x-1, y, z-2, IDs.RedstoneWire);
-		BlockWriter.setBlock(x+1, y, z-2, IDs.RedstoneWire);
+		if( x<0 || y<0 || z<0);
+		else{
+			BlockWriter.setBlock(x+1, y, z+2, IDs.RedstoneWire); //connecting wire
+			BlockWriter.setBlock(x+1, y, z+3, IDs.RedstoneWire);
+			BlockWriter.setBlock(x, y, z+2, IDs.RedstoneWire);
+			BlockWriter.setBlock(x, y, z+1, IDs.RedstoneWire);
+			BlockWriter.setBlock(x+2, y, z+1, IDs.RedstoneWire);
+			BlockWriter.setBlock(x, y, z, IDs.RedstoneWire);
+			BlockWriter.setBlock(x+2, y, z, IDs.RedstoneWire);
+		}
+		
 		
 	}
 	
 	public static void placeNOTGateAt(int x, int y, int z){
-		BlockWriter.setBlock(x, y, z+1, IDs.Sandstone);
-		BlockWriter.setBlock(x, y, z, IDs.RedstoneWire);
-		BlockWriter.setBlock(x, y, z+2, IDs.RedstoneTorch, REDSTONE_TORCH_ON_BLOCK_NORTH_SIDE);
-		BlockWriter.setBlock(x, y, z+3, IDs.RedstoneWire);
+		if( x<0 || y<0 || z<0);
+		else{
+			BlockWriter.setBlock(x, y, z+1, IDs.Sandstone);
+			BlockWriter.setBlock(x, y, z, IDs.RedstoneWire);
+			BlockWriter.setBlock(x, y, z+2, IDs.RedstoneTorch, REDSTONE_TORCH_ON_BLOCK_NORTH_SIDE);
+			BlockWriter.setBlock(x, y, z+3, IDs.RedstoneWire);
+		}
+		
 	}
 /*	
 	private logicGate AND(){

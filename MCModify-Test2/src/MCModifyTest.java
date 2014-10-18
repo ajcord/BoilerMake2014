@@ -68,18 +68,14 @@ public class MCModifyTest
 		int x= 6; int y=56; int z= 5;
 		
 		logicGate.placeNOTGateAt(x,y,z);
-		BlockWriter.setBlock(x, y, z-1, IDs.Lever, LEVER_BLOCK_TOP_FACING_EAST);
 		
 		
 		x=12; y=56; z= 5;
 		logicGate.placeANDGateAt(x, y, z);
-		BlockWriter.setBlock(x+1, y, z-2, IDs.Lever, LEVER_BLOCK_TOP_FACING_SOUTH);
-		BlockWriter.setBlock(x-1, y, z-2, IDs.Lever, LEVER_BLOCK_TOP_FACING_SOUTH);
 		
 		x=9; y=56; z= 5;
 		logicGate.placeORGateAt(x,y,z);
-		BlockWriter.setBlock(x+1, y, z-3, IDs.Lever, LEVER_BLOCK_TOP_FACING_SOUTH);
-		BlockWriter.setBlock(x-1, y, z-3, IDs.Lever, LEVER_BLOCK_TOP_FACING_SOUTH);
+		
 		
 		
 		BlockWriter.saveChunk();
