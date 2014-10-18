@@ -50,75 +50,26 @@ public class Module {
 				Wire tempOutput[];
 				counter++;
 			}
-			else if(line.substring(0,4).equals("wire")){
-				line = line.substring(4,line.length());
-				int i = line.indexOf(",");
-				while(i != -1){
-					String wire = line.substring(0,i);
-					wires.add(new Wire(wire));
-					line = line.substring(i,line.length());
-					i = line.indexOf(",");
-				}
-			}
 			else if(line.substring(0,3).equals("and")){
-				int i = line.indexOf("(");
-				String mod = line.substring(3,i);
-				int j = line.indexOf(",");
-				String outputname = line.substring(i+1,j);
-				i = line.indexOf(",");
-				String inputname1 = line.substring(j+1,i);
-				j = line.indexOf(",");
-				String inputname2 = line.substring(i+1,j);
-				Wire leaving = findWire(outputname);
-				Wire firstInput = findWire(inputname1);
-				Wire secondInput = findWire(inputname2);//WHAT HAPPENS IF THESE ARE -1?
-				ArrayList<Wire> temp = new ArrayList<Wire>();
-				temp.add(firstInput);
-				temp.add(secondInput);
-				Module currentAnd = new Module(mod,temp, leaving,this.level+1,1);
-				
+				makePrimative(line,"and",1);
 			}
 			else if(line.substring(0,2).equals("or")){
-				int i = line.indexOf("(");
-				String mod = line.substring(3,i);
-				int j = line.indexOf(",");
-				String outputname = line.substring(i+1,j);
-				i = line.indexOf(",");
-				String inputname1 = line.substring(j+1,i);
-				j = line.indexOf(",");
-				String inputname2 = line.substring(i+1,j);
-				Wire leaving = findWire(outputname);
-				Wire firstInput = findWire(inputname1);
-				Wire secondInput = findWire(inputname2);//WHAT HAPPENS IF THESE ARE -1?
-				ArrayList<Wire> temp = new ArrayList<Wire>();
-				temp.add(firstInput);
-				temp.add(secondInput);
-				Module currentAnd = new Module(mod,temp, leaving,this.level+1,2);
+				makePrimative(line,"or",2);
 			}
 			else if(line.substring(0,3).equals("not")){
-				int i = line.indexOf("(");
-				String mod = line.substring(3,i);
-				int j = line.indexOf(",");
-				String outputname = line.substring(i+1,j);
-				i = line.indexOf(",");
-				String inputname1 = line.substring(j+1,i);
-				Wire leaving = findWire(outputname);
-				Wire firstInput = findWire(inputname1);
-				ArrayList<Wire> temp = new ArrayList<Wire>();
-				temp.add(firstInput);
-				Module currentAnd = new Module(mod,temp, leaving,this.level+1,3);
+				makePrimative(line,"not",3);
 			}
 			else if(line.substring(0,5).equals("input")){
-				
+				this.wires = buildArray(line,"input");
 			}
 			else if(line.substring(0,6).equals("output")){
-				
+				this.wires = buildArray(line,"output");
 			}
 			else if(line.substring(0,4).equals("wire")){
-				
+				this.wires = buildArray(line,"wire");
 			}
 			else if(line.equals("endmodule")){
-				
+				break;
 			}
 			else{
 				/*non primitive module */
@@ -132,7 +83,37 @@ public class Module {
 
 	public Wire findWire(String name){
 		for(int i = 0; i < allWires.size(); i++)
-			if(((allWires.get(i)).id).equals(name)) return allWires.get(i);
+			if(((allWires.get(i)).name).equals(name)) return allWires.get(i);
 		return new Wire();
 	}
+	public void makePrimative(String line, String gate, int type){
+		int i = line.indexOf("(");
+		String mod = line.substring(gate.length(),i);
+		line = line.substring(gate.length(),i);
+		i = line.indexOf(",");
+		String output = line.substring(0,i);
+		i = line.indexOf(")");
+		line = line.substring(0,i);
+		ArrayList<Wire> inputs = buildArray(line,"");
+		Wire leaving = findWire(output);
+		ArrayList<Wire> coming = new ArrayList<Wire>();
+		for(i=0; i< inputs.size();i++){
+			coming.add(findWire((inputs.get(i)).name));
+		}
+		Module primative = new Module(mod,coming, leaving,this.level+1,type);
+		leaving.comingFrom = primative;
+	}
+	public ArrayList<Wire> buildArray(String line, String deliminator){
+		line = line.substring(deliminator.length(),line.length());
+		int i = line.indexOf(",");
+		ArrayList<Wire> wires = new ArrayList<Wire>();
+		while(i != -1){
+			String wire = line.substring(0,i);
+			wires.add(new Wire(wire));
+			line = line.substring(i,line.length());
+			i = line.indexOf(",");
+		}
+		return wires;
+	}
+	
 }
