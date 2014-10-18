@@ -14,9 +14,14 @@ public class MCModifyTest
 	public static void main(String[] args) throws Throwable
 	{
 		final Level level;
-		try(FileInputStream fis = new FileInputStream(TestingUtils.getInputFile("level.dat")))
+		
+		FileInputStream fis = new FileInputStream(TestingUtils.getInputFile("level.dat"));
+		try
 		{
 			level = new Level((Tag.Compound)Tag.deserialize(CompressionScheme.GZip.getInputStream(fis)));
+		}
+		finally{
+			
 		}
 
 		Level.Player player = level.Player();
