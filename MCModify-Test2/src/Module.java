@@ -88,6 +88,37 @@ public class Module {
 				filename = filename.replaceAll(" ","");
 				filename = filename + ".txt";
 				String newFile = (filename);
+				//Figure out what my wire names are before I step into function
+				String [] params = linetemp.substring(linetemp.indexOf("(")+1, linetemp.indexOf(")")).split(",");
+				//Figure out what my wire names are after I step into function
+				BufferedReader br = null;
+				try {
+					br = new BufferedReader(new FileReader(file));
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				String line = "New Params";
+				while((line.indexOf("module "))!=0){
+					try {
+						line = br.readLine();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				//Now I have the module declaration line
+				String [] newParams = line.substring(line.indexOf("(")+1, linetemp.indexOf(")")).split(",");
+				//Find and replace one at a time
+				Path path = Paths.get(filename);
+				Charset charset = StandardCharsets.UTF_8;
+
+				String content = new String(Files.readAllBytes(path), charset);
+				for(int i = 0; i<params.length;i++){
+					content = content.replaceAll(newParams[i], params[i]);
+				}
+				Files.write(path, content.getBytes(charset));
+				//Now I am ready to step into the function
 				Module newMod = new Module(newFile);
 				//if(isHead(newMod)) heads.add(newMod);
 				newMod.name = line.substring(index, line.indexOf("("));
