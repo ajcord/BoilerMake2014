@@ -13,10 +13,10 @@ public class MinimalExample {
 	public static void main(String[] args) {
 		try {
             //Region region = new Region(new File("flatworld_master_r.0.0.mca"));
-            String filename = "r.0.0.mca";
+            String filename = "region/r.0.0.mca";
             //===================================================
             //the missing line that solved both problems
-            copyFile("r.0.0.mca.in",filename);
+            //copyFile("r.0.0.mca.in",filename);
             //===================================================
             Region newregion = new FileRegion(new File(filename)); 
 			
@@ -26,12 +26,12 @@ public class MinimalExample {
 			newregion.setChunk(loc, chunk);
 			System.out.println("Saved");*/
 			
-			for (int x = 10; x < 32; x++) {
-				for (int y = 10; y < 32; y++) {
+			for (int x = 0; x < 32; x++) {
+				for (int y = 0; y < 32; y++) {
 					LocChunkInRegion loc = new LocChunkInRegion(x, y);
 					Chunk chunk = newregion.getChunk(loc);
 					
-					//if (chunk != null) {
+					if (chunk != null) {
 						for (int k = 0; k < 16; k++) {
 							for (int k2 = 0; k2 < 16; k2++) {
 								chunk.BlockID(k, 57, k2, IDs.Dirt);
@@ -40,7 +40,7 @@ public class MinimalExample {
 						
 						newregion.setChunk(loc, chunk);
 						System.out.println("Wrote chunk at location " + loc.x + ", " + loc.z);
-					//}
+					}
 				}
 			}
 		} catch (Exception e) {
