@@ -40,6 +40,7 @@ public class MCModifyTest
 		*/
 		
 		BlockWriter.loadChunk(0, 0, 0);
+		/*
 		for (int x = 1; x < 8; x += 2) {
 			
 			BlockWriter.setBlock(x, 56, 0, IDs.Lever, LEVER_BLOCK_TOP_FACING_SOUTH);
@@ -63,10 +64,12 @@ public class MCModifyTest
 				}
 			}
 		}
+		*/
 		int x= 12; int y=56; int z= 1;
 		
 		logicGate.placeNOTGateAt(x,y,z);
 		BlockWriter.setBlock(x, y, z-1, IDs.Lever, LEVER_BLOCK_TOP_FACING_SOUTH);
+		
 		
 		x=18;
 		logicGate.placeANDGateAt(x, y, z);
