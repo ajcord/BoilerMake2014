@@ -23,12 +23,14 @@ public class MCModifyTest
 		
 		for (int k = 0; k < 12; k++) {
 			BlockWriter.loadChunk(k*16, 0, 0);
+			//System.out.println("Loading Chunk: " + k);
 			for (int i = 0; i < 16; i++) {
 				for (int j = 0; j < 16; j++) {
 					BlockWriter.setBlock(k*16 + i,  56, j, IDs.BlockOfEmerald);
 				}
 			}
 			BlockWriter.saveChunk();
+			//System.out.println("Saved Chunk: " + k);
 		}
 		/*
 		final Level level;
