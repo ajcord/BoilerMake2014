@@ -1,0 +1,48 @@
+import minecraft.BlockWriter;
+import minecraft.IDs;
+
+
+public class logicGate {
+
+	final static byte LEVER_BLOCK_BOTTOM_FACING_EAST=0;
+	final static byte LEVER_BLOCK_SIDE_FACING_EAST=1;
+	final static byte LEVER_BLOCK_SIDE_FACING_WEST=2;
+	final static byte LEVER_BLOCK_SIDE_FACING_SOUTH=3;
+	final static byte LEVER_BLOCK_SIDE_FACING_NORTH=4;
+	final static byte LEVER_BLOCK_TOP_FACING_EAST=5;
+	final static byte LEVER_BLOCK_TOP_FACING_SOUTH=5;
+	final static byte LEVER_BLOCK_BOTTOM_FACING_SOUTH=7;
+	final static byte LEVER_ACTIVE=8;
+	
+	public logicGate(){
+		System.out.println("Logic gate made.");
+	}
+	
+	public static void placeANDGateAt(int x, int y, int z){
+		
+	}
+	
+	public static void placeORGateAt(int x, int y, int z){
+		
+	}
+	
+	public static void placeNOTGateAt(int x, int y, int z){
+		BlockWriter.setBlock(x, y, z+1, IDs.Sandstone);
+		BlockWriter.setBlock(x, y, z, IDs.Lever, LEVER_BLOCK_SIDE_FACING_SOUTH);
+		BlockWriter.setBlock(x, y, z+2, IDs.RedstoneTorch, LEVER_BLOCK_SIDE_FACING_NORTH);
+		BlockWriter.setBlock(x, y, z+3, IDs.RedstoneWire);
+	}
+/*	
+	private logicGate AND(){
+		BlockWriter.setBlock(3, 56, 1, IDs.Sandstone);
+	}
+	
+	private logicGate OR(){
+		
+	}
+
+	private logicGate NOT(){
+	
+	}
+	*/
+}

@@ -53,6 +53,7 @@ public class MCModifyTest
 				}
 			}
 		}
+		logicGate.placeNOTGateAt(1,56,1);
 		BlockWriter.saveChunk();
 			
 		/*
