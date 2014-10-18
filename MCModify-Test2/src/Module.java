@@ -66,6 +66,10 @@ public class Module {
 				int j = line.indexOf(",");
 				String outputname = line.substring(i+1,j);
 				i = line.indexOf(",");
+				String inputname1 = line.substring(j+1,i);
+				j = line.indexOf(",");
+				String inputname2 = line.substring(i+1,j);
+				
 			}
 			else if(line.substring(0,2).equals("or")){
 				
