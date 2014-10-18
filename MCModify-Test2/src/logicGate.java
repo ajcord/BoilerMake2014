@@ -33,7 +33,7 @@ public class logicGate {
 		BlockWriter.setBlock(x, y+1, z, IDs.RedstoneWire);
 		BlockWriter.setBlock(x+1, y+1, z, IDs.RedstoneTorch); //REDSTONE_TORCH_ON_GROUND
 		BlockWriter.setBlock(x-1, y+1, z, IDs.RedstoneTorch); //REDSTONE_TORCH_ON_GROUND
-		BlockWriter.setBlock(x, y, z+1, IDs.RedstoneTorch, REDSTONE_TORCH_ON_BLOCK_NORTH_SIDE);
+		BlockWriter.setBlock(x, y, z+1, IDs.RedstoneTorch, REDSTONE_TORCH_ON_BLOCK_SOUTH_SIDE);
 		BlockWriter.setBlock(x, y, z+2, IDs.RedstoneWire);//Redstone wire on South, output
 	}
 	
