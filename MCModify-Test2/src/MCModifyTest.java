@@ -68,7 +68,7 @@ public class MCModifyTest
 		logicGate.placeNOTGateAt(x,y,z);
 		BlockWriter.setBlock(x, y, z-1, IDs.Lever, LEVER_BLOCK_TOP_FACING_SOUTH);
 		
-		x=15;
+		x=18;
 		logicGate.placeANDGateAt(x, y, z);
 		BlockWriter.setBlock(x, y, z-2, IDs.Lever, LEVER_BLOCK_TOP_FACING_SOUTH);
 		BlockWriter.setBlock(x, y, z-2, IDs.Lever, LEVER_BLOCK_TOP_FACING_SOUTH);
