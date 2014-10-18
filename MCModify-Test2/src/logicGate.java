@@ -47,13 +47,19 @@ public class logicGate {
 	}
 	
 	public static void placeORGateAt(int x, int y, int z){
+		BlockWriter.setBlock(x, y, z, IDs.RedstoneWire); //connecting wire
+		BlockWriter.setBlock(x, y, z+1, IDs.RedstoneWire);
+		BlockWriter.setBlock(x-1, y, z-1, IDs.RedstoneWire);
+		BlockWriter.setBlock(x+1, y, z-1, IDs.RedstoneWire);
+		BlockWriter.setBlock(x-1, y, z-2, IDs.RedstoneWire);
+		BlockWriter.setBlock(x+1, y, z-2, IDs.RedstoneWire);
 		
 	}
 	
 	public static void placeNOTGateAt(int x, int y, int z){
 		BlockWriter.setBlock(x, y, z+1, IDs.Sandstone);
 		BlockWriter.setBlock(x, y, z, IDs.RedstoneWire);
-		BlockWriter.setBlock(x, y, z+2, IDs.RedstoneTorch, LEVER_BLOCK_SIDE_FACING_SOUTH);
+		BlockWriter.setBlock(x, y, z+2, IDs.RedstoneTorch, REDSTONE_TORCH_ON_BLOCK_NORTH_SIDE);
 		BlockWriter.setBlock(x, y, z+3, IDs.RedstoneWire);
 	}
 /*	
