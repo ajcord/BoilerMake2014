@@ -15,9 +15,11 @@ public class Interpreter {
 			for (int j = 0; j < input.get(i).size(); j++) {
 				Pair point = input.get(i).get(j);
 				BlockWriter.setBlock(point.x, point.y, point.z, IDs.Sandstone);
-				if(point.topBlock == IDs.RedstoneRepeater || point.topBlock == IDs.RedstoneRepeaterOff){
-					BlockWriter.setBlock(point.x, point.y + 1, point.z, IDs.RedstoneRepeaterOff, (byte) 1); 
-				}//byte 1 implies repeater facing east
+				if(point.topBlock == IDs.RedstoneRepeater)
+					BlockWriter.setBlock(point.x, point.y + 1, point.z, IDs.RedstoneRepeaterOff, (byte) 0); //north-south
+				//byte 1 implies repeater facing east
+				else if (point.topBlock == IDs.RedstoneRepeaterOff)
+					BlockWriter.setBlock(point.x, point.y + 1, point.z, IDs.RedstoneRepeaterOff, (byte) 1); //east-west
 				else
 					BlockWriter.setBlock(point.x, point.y + 1, point.z, point.topBlock);
 			}
