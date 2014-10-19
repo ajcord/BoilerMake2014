@@ -17,11 +17,11 @@ public class Module {
 	static boolean setHead = false;
 	static Module head;
 	int level = -1;
-	int type = -1; // 1 is AND, 2 is OR, 3 is NOT, 4 is NO-OP
+	public int type = -1; // 1 is AND, 2 is OR, 3 is NOT, 4 is NO-OP
 	// int width; // Amount of levels it takes up (1 for primitives, more for
 	// complex)
-	String name;
-	ArrayList<Wire> output;
+	public String name;
+	public ArrayList<Wire> output;
 	ArrayList<Wire> input;
 
 	public Module(String name, ArrayList<Wire> input, Wire output, int level,
