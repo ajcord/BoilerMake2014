@@ -68,17 +68,5 @@ public class LogicGate {
 		}
 		
 	}
-/*	
-	private logicGate AND(){
-		BlockWriter.setBlock(3, 56, 1, IDs.Sandstone);
-	}
-	
-	private logicGate OR(){
-		
-	}
 
-	private logicGate NOT(){
-	
-	}
-	*/
 }
