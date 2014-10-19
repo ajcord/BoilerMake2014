@@ -5,7 +5,8 @@ import java.util.ArrayList;
 public class Wire {
 	String name;
 	Module comingFrom;
-	ArrayList<Module> goingTo;
+	public ArrayList<Module> goingTo;
+	public ArrayList<Integer> inputNumbers;
 
 	public Wire(String name, Module comingFrom, ArrayList<Module> goingTo) {
 		super();
