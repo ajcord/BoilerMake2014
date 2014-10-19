@@ -67,14 +67,14 @@ public class MCModifyTest
 		*/
 		int x= 6; int y=56; int z= 5;
 		
-		logicGate.placeNOTGateAt(x,y,z);
+		//logicGate.placeNOTGateAt(x,y,z);
 		
 		
-		x=15; y=56; z= 5;
+		x=8; y=56; z= 5;
 		logicGate.placeANDGateAt(x, y, z);
 		
 		x=11; y=56; z= 5;
-		logicGate.placeORGateAt(x,y,z);
+		//logicGate.placeORGateAt(x,y,z);
 		
 		
 		
