@@ -89,6 +89,8 @@ public class Module {
 				makePrimative(line, "or", 2);
 			} else if (line.substring(0, 3).equals("not")) {
 				makePrimative(line, "not", 3);
+			} else if (line.substring(0, 3).equals("xor")) {
+				makePrimative(line, "xor", 5);
 			} else if (line.substring(0, 5).equals("input")) {
 				this.output = globalWires(line, "input");
 				for (Wire w : this.output)
@@ -338,32 +340,34 @@ public class Module {
 
 	public static ArrayList<ArrayList<Module>> improvedLevelArray(
 			ArrayList<ArrayList<Module>> current) {
-		ArrayList<ArrayList<Module>> modules = (ArrayList<ArrayList<Module>>) current.clone();
+		ArrayList<ArrayList<Module>> modules = (ArrayList<ArrayList<Module>>) current
+				.clone();
 		for (int i = 0; i < modules.size(); i++) {
 			for (int j = 0; j < modules.get(i).size(); j++) {
 				Module now = modules.get(i).get(j);
 				for (int k = 0; k < now.output.size(); k++) {
 					Wire present = now.output.get(k);
-					if(present != null){
-					for (int l = 0; l < present.goingTo.size(); l++) {
-						Module next = present.goingTo.get(l);
-						int diff = now.level - next.level;
-						while (diff > 1) {
-							String name = "" + now + " " + next + " " + diff;
-							Wire win = new Wire("IN" + name, now);
-							Wire wout = new Wire("OUT" + name);
-							if (diff == 2) {
-								wout.goingTo.add(next);
+					if (present != null) {
+						for (int l = 0; l < present.goingTo.size(); l++) {
+							Module next = present.goingTo.get(l);
+							int diff = now.level - next.level;
+							while (diff > 1) {
+								String name = "" + now + " " + next + " "
+										+ diff;
+								Wire win = new Wire("IN" + name, now);
+								Wire wout = new Wire("OUT" + name);
+								if (diff == 2) {
+									wout.goingTo.add(next);
+								}
+								Module mnew = new Module(name, win, wout, 4,
+										now.level + 1);
+								win.goingTo.add(mnew);
+								wout.comingFrom = mnew;
+								now = mnew;
+								modules.get(mnew.level).add(mnew);
+								diff--;
 							}
-							Module mnew = new Module(name, win, wout, 4,
-									now.level + 1);
-							win.goingTo.add(mnew);
-							wout.comingFrom = mnew;
-							now = mnew;
-							modules.get(mnew.level).add(mnew);
-							diff--;
 						}
-					}
 					}
 				}
 			}
