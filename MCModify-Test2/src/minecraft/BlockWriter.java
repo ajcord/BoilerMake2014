@@ -55,6 +55,22 @@ public class BlockWriter {
 			e.printStackTrace();
 		}
 	}
+	
+	public static short getBlock(int x, int y, int z) {
+		if (y > 255 || y < 0) {
+			throw new IllegalArgumentException("Invalid y coordinate ("+x+","+y+","+z+")");
+		}
+		
+		if (currentChunk != null) {
+			//Get the block coordinate within the chunk
+			x %= 16;
+			z %= 16;
+			if (x < 0) x += 16;
+			if (z < 0) z += 16;
+			return currentChunk.BlockID(x, y, z);
+		}
+		return -1;
+	}
 
 	public static void setBlock(int x, int y, int z, short blockID) {
 

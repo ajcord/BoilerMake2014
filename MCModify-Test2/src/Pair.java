@@ -116,7 +116,8 @@ public class Pair {
 				p.add(new Pair(x + dx++, y + dy, z + dz, IDs.RedstoneWire));
 			}
 			
-			//Add a final repeater to ensure a good input signal
+			//Add a final wire and repeater to ensure a good input signal
+			p.add(new Pair(x + dx++, y + dy, z + dz, IDs.RedstoneWire));
 			p.add(new Pair(x + dx, y + dy, z + dz, IDs.RedstoneRepeaterOff));
 			
 			solution.add(p);

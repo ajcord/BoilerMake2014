@@ -6,7 +6,7 @@ public class Wire {
 	String name;
 	Module comingFrom;
 	public ArrayList<Module> goingTo;
-	public ArrayList<Integer> inputNumbers;
+	//public ArrayList<Integer> inputNumbers;
 
 	public Wire(String name, Module comingFrom, ArrayList<Module> goingTo) {
 		super();
