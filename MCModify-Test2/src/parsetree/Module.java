@@ -336,27 +336,15 @@ public class Module {
 		return;
 	}
 
-	public ArrayList<ArrayList<Module>> improvedLevelArray(
+	public static ArrayList<ArrayList<Module>> improvedLevelArray(
 			ArrayList<ArrayList<Module>> current) {
-		int maxLevel = -1;
-		for (Module m : Module.modules)
-			if (m.level > maxLevel)
-				maxLevel = m.level;
-		ArrayList<ArrayList<Module>> modules = new ArrayList<ArrayList<Module>>(
-				maxLevel + 2);
-		for (int i = 0; i < current.size(); i++) {
-			for (int j = 0; j < current.get(i).size(); j++) {
-				ArrayList<Module> newmodlist = modules.get(i);
-				newmodlist.set(j, current.get(i).get(j));
-			}/* Now they should hold the same values */
-		}
-		for (int i = 0; i < maxLevel + 2; i++)
-			modules.add(new ArrayList<Module>());
-		for (int i = 0; i < current.size(); i++) {
-			for (int j = 0; j < current.get(i).size(); j++) {
-				Module now = current.get(i).get(j);
+		ArrayList<ArrayList<Module>> modules = (ArrayList<ArrayList<Module>>) current.clone();
+		for (int i = 0; i < modules.size(); i++) {
+			for (int j = 0; j < modules.get(i).size(); j++) {
+				Module now = modules.get(i).get(j);
 				for (int k = 0; k < now.output.size(); k++) {
 					Wire present = now.output.get(k);
+					if(present != null){
 					for (int l = 0; l < present.goingTo.size(); l++) {
 						Module next = present.goingTo.get(l);
 						int diff = now.level - next.level;
@@ -364,12 +352,18 @@ public class Module {
 							String name = "" + now + " " + next + " " + diff;
 							Wire win = new Wire("IN" + name, now);
 							Wire wout = new Wire("OUT" + name);
+							if (diff == 2) {
+								wout.goingTo.add(next);
+							}
 							Module mnew = new Module(name, win, wout, 4,
 									now.level + 1);
+							win.goingTo.add(mnew);
+							wout.comingFrom = mnew;
 							now = mnew;
 							modules.get(mnew.level).add(mnew);
 							diff--;
 						}
+					}
 					}
 				}
 			}

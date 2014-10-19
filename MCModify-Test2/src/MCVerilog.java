@@ -7,9 +7,10 @@ import parsetree.*;
 public class MCVerilog {
 
 	public static void main(String[] args) {
-		String filepath = "sc_block.txt";
+		String filepath = "nor.v";
 		Module head = new Module(filepath);
 		ArrayList<ArrayList<Module>> levelArray = head.getLevelArray();
+		levelArray = Module.improvedLevelArray(levelArray);
 		Module start = levelArray.get(0).get(0);
 		// Connect to level 1
 		/* Using gates pointed in the x direction */
@@ -47,13 +48,14 @@ public class MCVerilog {
 						locations.add(new Pair(x + 5, y, z + 3 * k));
 				}
 				BlockWriter.saveChunk();
+
+				first.addAll(locations);
 				
 				for(int k = 0; k < currentModule.output.size(); k++) {
 					Wire currentWire = currentModule.output.get(k);
 					int dz = 0;
 					for (int inputIndex = 0; inputIndex < currentWire.goingTo.size(); inputIndex++) {
 						Module targetModule = currentWire.goingTo.get(inputIndex);
-						first.addAll(locations);
 						dz = getOffset(levelArray.get(i+1), targetModule.name);
 						for (int locIndex = 0; locIndex < locations.size(); locIndex++) {
 							Pair location = locations.get(locIndex);
@@ -61,6 +63,7 @@ public class MCVerilog {
 								//Something is already using this input. Use the next input.
 								dz += 3;
 							}
+							//dz += 3;
 							second.add(new Pair(location.x + 10, location.y, dz));
 						}
 					}
