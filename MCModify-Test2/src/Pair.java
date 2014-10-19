@@ -36,7 +36,7 @@ public class Pair {
 		for (int i = 0; i < pairs.size(); i++) {
 			pairs.get(i).height = targetHeight; //Set the current pair's height
 			int x = pairs.get(i).x;
-			int y = pairs.get(i).y;
+			int y = pairs.get(i).y - 1;
 			int z = pairs.get(i).z;
 			/* 
 			 * Generate a new ArrayList of Pairs to contain the path from
@@ -46,7 +46,7 @@ public class Pair {
 			
 			//Elevate from ground level to the current height
 			int dx = 0;
-			int dy = -1;
+			int dy = 0;
 			int dz = 0;
 			if (targetHeight == 0) {
 				//No need to elevate. Stay at ground level.
@@ -54,7 +54,7 @@ public class Pair {
 					p.add(new Pair(x + dx, y + dy, z + dz, IDs.RedstoneWire));
 				}
 			} else {
-				while (dy + 3 < targetHeight) {
+				while (dy + 2 < targetHeight) {
 					//Spiral staircase up to get to targetHeight
 					p.add(new Pair(x + dx++, y + dy++, z + dz, IDs.RedstoneWire));
 					p.add(new Pair(x + dx, y + dy++, z + dz++, IDs.RedstoneWire));
@@ -68,8 +68,9 @@ public class Pair {
 				}
 			}
 			
-			//Add a repeater to ensure the signal gets where it needs to
-			p.add(new Pair(x + dx, y + dy, z + dz, (short)IDs.RedstoneRepeater));
+			//Add a wire and repeater to ensure the signal gets where it needs to
+			p.add(new Pair(x + dx++, y + dy, z + dz, (short)IDs.RedstoneWire));
+			p.add(new Pair(x + dx++, y + dy, z + dz, (short)IDs.RedstoneRepeater));
 			
 			//Move into alignment with target position
 			Pair expect = finals.get(i);
@@ -88,14 +89,14 @@ public class Pair {
 					p.add(new Pair(x + dx, y + dy, z + dz, IDs.RedstoneWire));
 				}
 			} else {
-				while (dy - 1 > expect.y) {
+				while (dy - 2 > expect.y - y) {
 					//Spiral staircase up to get to targetHeight
 					p.add(new Pair(x + dx++, y + dy--, z + dz, IDs.RedstoneWire));
 					p.add(new Pair(x + dx, y + dy--, z + dz++, IDs.RedstoneWire));
 					p.add(new Pair(x + dx--, y + dy--, z + dz, IDs.RedstoneWire));
 					p.add(new Pair(x + dx, y + dy--, z + dz--, IDs.RedstoneWire));
 				}
-				if (dy > expect.y) {
+				if (dy > expect.y - y) {
 					//Add a stairstep to get it up to targetHeight
 					p.add(new Pair(x + dx++, y + dy--, z + dz, IDs.RedstoneWire));
 					p.add(new Pair(x + dx++, y + dy--, z + dz, IDs.RedstoneWire));
