@@ -9,9 +9,6 @@ public class Interpreter {
 	int value;
 	static ArrayList<ArrayList<Module>> moduleLevels= Module.moduleLevels;
 	
-	public static void main(String[] args){
-		
-	}
 	
 	public static void Interpret(ArrayList<ArrayList<Pair>> input){
 		//interprets moduleLevels and sends commands to build class
@@ -20,8 +17,8 @@ public class Interpreter {
 		for(int i=0; i< input.size(); i++){
 			
 			for(int j=0; j< input.get(i).size(); j++){
-				Pair pair=input.get(i).get(j);
-				BlockWriter.setBlock(pair.x, pair.y, pair.z, pair.topBlock);
+				Pair point=input.get(i).get(j);
+				BlockWriter.setBlock(point.x, point.y, point.z, point.topBlock);
 			}
 		}
 		
