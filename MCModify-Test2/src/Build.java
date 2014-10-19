@@ -28,5 +28,12 @@ public class Build {
 		System.out.println("Default block built.");
 		
 	}
+	private static void buildCustomBlock(int x, int y, int z, short blockID){
+		//default block is Sandstone with redstone on top
+		BlockWriter.setBlock(x, y, z, IDs.Sandstone);
+		BlockWriter.setBlock(x, y+1, z, blockID);
+		System.out.println("Block with "+ blockID + " on top.");
+		
+	}
 
 }
