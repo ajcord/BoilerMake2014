@@ -87,5 +87,14 @@ public class LogicGate {
 			/* Inputs at x+1,y,z+2*2i*/
 		}
 	}
-
-}
+	
+	public static void placeENDGateAt(int x, int y, int z, int outputs){
+		if( x < 0 || y < 0 || z < 0 || outputs < 1);
+	   else{
+		for(int i = 0; i < outputs; i++){
+			BlockWriter.setBlock(x+1,y,(z + 2*i), IDs.RedstoneTorch); 
+			BlockWriter.setBlock(x,y,(z + 2*i), IDs.RedstoneWire); 
+		}
+		/* Inputs at x+1,y,z+2*2i*/
+	   }
+}}

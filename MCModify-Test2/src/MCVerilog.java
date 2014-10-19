@@ -41,7 +41,7 @@ public class MCVerilog {
 					ArrayList<Pair> locations = new ArrayList<Pair>();
 					for(int k = 0; k < temp.output.size(); k++) locations.add(new Pair(x+1,y,z + 2*k)); 
 				}
-				z+=4;
+				z+=5;
 			}
 			x += 16;
 		}
