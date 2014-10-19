@@ -7,6 +7,7 @@ import parsetree.*;
 public class MCVerilog {
 
 	public static void main(String[] args) {
+		BlockWriter.loadChunk(0, 0, 0);
 		String filepath = "sc_block.txt";
 		Module head = new Module(filepath);
 		ArrayList<ArrayList<Module>> levelArray = head.getLevelArray();
@@ -14,7 +15,7 @@ public class MCVerilog {
 		//Connect to level 1
 		/* Using gates pointed in the x direction */
 		int x = 0;
-		int y = 0;
+		int y = 56;
 		int z = 0;
 		ArrayList<Pair> first;
 		ArrayList<Pair> second;
@@ -46,7 +47,7 @@ public class MCVerilog {
 		}
 		//Connect to tail
 		Module end = levelArray.get(levelArray.size()-1).get(0);
-		
+		BlockWriter.saveChunk();
 		
 	}
 
