@@ -10,16 +10,22 @@ public class Interpreter {
 	static ArrayList<ArrayList<Module>> moduleLevels= Module.moduleLevels;
 	
 	public static void main(String[] args){
-		BlockWriter.loadChunk(0, 0, 0); //temp variables
-		int input=1;
-		Interpret(input);
-		//more shit
-		BlockWriter.saveChunk();
+		
 	}
 	
-	public static void Interpret(int input){
+	public static void Interpret(ArrayList<ArrayList<Pair>> input){
 		//interprets moduleLevels and sends commands to build class
 		//given an array list of pairs, build sandstone block with with redstone on top for all
+		BlockWriter.loadChunk(0, 0, 0); //temp variables
+		for(int i=0; i< input.size(); i++){
+			
+			for(int j=0; j< input.get(i).size(); j++){
+				Pair pair=input.get(i).get(j);
+				BlockWriter.setBlock(pair.x, pair.y, pair.z, pair.topBlock);
+			}
+		}
+		
+		BlockWriter.saveChunk();
 	}
 	
 }
