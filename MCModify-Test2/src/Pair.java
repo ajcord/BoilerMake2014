@@ -7,7 +7,7 @@ public class Pair {
 	int y;
 	int z;
 	int height;
-	int topBlock;
+	short topBlock;
 	public Pair(int a, int b, int c) {
 		x = a;
 		y = b;
@@ -15,7 +15,7 @@ public class Pair {
 		topBlock = IDs.Air;
 	}
 	
-	public Pair(int a, int b, int c, int topBlock) {
+	public Pair(int a, int b, int c, short topBlock) {
 		this(a, b, c);
 		this.topBlock = topBlock;
 	}
@@ -67,7 +67,7 @@ public class Pair {
 			}
 			
 			//Add a repeater to ensure the signal gets where it needs to
-			p.add(new Pair(x + dx, y + dy, z + dz, IDs.RedstoneRepeater));
+			p.add(new Pair(x + dx, y + dy, z + dz, (short)IDs.RedstoneRepeater));
 			
 			//Move into alignment with target position
 			Pair expect = finals.get(i);
