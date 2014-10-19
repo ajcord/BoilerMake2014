@@ -28,8 +28,14 @@ public class MCModifyTest
 		
 		BlockWriter.loadChunk(0, 0, 0);
 		
-		int x=0, y=56, z= 3;
+		int x=0, y=56, z= 0;
 		LogicGate.placeANDGateAt(x, y, z);
+		
+		z=5;
+		LogicGate.placeNOTGateAt(x, y, z);
+		
+		z=10;
+		LogicGate.placeORGateAt(x, y, z);
 		
 		BlockWriter.saveChunk();
 			
