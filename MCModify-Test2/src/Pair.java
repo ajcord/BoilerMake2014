@@ -20,7 +20,7 @@ public class Pair {
 		this.topBlock = topBlock;
 	}
 
-	public ArrayList<ArrayList<Pair>> crossingProblem(ArrayList<Pair> pairs, ArrayList<Pair> finals) {
+	public static ArrayList<ArrayList<Pair>> crossingProblem(ArrayList<Pair> pairs, ArrayList<Pair> finals) {
 		if (pairs.size() != finals.size()) {
 			System.out.println("You need to pass in the same size arrays");
 			return null;
@@ -35,7 +35,9 @@ public class Pair {
 		int targetHeight = 0;
 		for (int i = 0; i < pairs.size(); i++) {
 			pairs.get(i).height = targetHeight; //Set the current pair's height
-			
+			int x = pairs.get(i).x;
+			int y = pairs.get(i).y;
+			int z = pairs.get(i).z;
 			/* 
 			 * Generate a new ArrayList of Pairs to contain the path from
 			 * pairs.get(i) to finals.get(i)
@@ -44,7 +46,7 @@ public class Pair {
 			
 			//Elevate from ground level to the current height
 			int dx = 0;
-			int dy = 0;
+			int dy = -1;
 			int dz = 0;
 			if (targetHeight == 0) {
 				//No need to elevate. Stay at ground level.
@@ -52,14 +54,14 @@ public class Pair {
 					p.add(new Pair(x + dx, y + dy, z + dz, IDs.RedstoneWire));
 				}
 			} else {
-				while (y + dy + 2 < targetHeight) {
+				while (dy + 3 < targetHeight) {
 					//Spiral staircase up to get to targetHeight
 					p.add(new Pair(x + dx++, y + dy++, z + dz, IDs.RedstoneWire));
 					p.add(new Pair(x + dx, y + dy++, z + dz++, IDs.RedstoneWire));
 					p.add(new Pair(x + dx--, y + dy++, z + dz, IDs.RedstoneWire));
 					p.add(new Pair(x + dx, y + dy++, z + dz--, IDs.RedstoneWire));
 				}
-				if (y + dy < targetHeight) {
+				if (dy < targetHeight) {
 					//Add a stairstep to get it up to targetHeight
 					p.add(new Pair(x + dx++, y + dy++, z + dz, IDs.RedstoneWire));
 					p.add(new Pair(x + dx++, y + dy++, z + dz, IDs.RedstoneWire));
@@ -73,9 +75,9 @@ public class Pair {
 			Pair expect = finals.get(i);
 			while (z != expect.z) {
 				if (z < expect.z) {
-					p.add(new Pair(x + dx, y + dy, z + dz++));
+					p.add(new Pair(x + dx, y + dy, z + dz++, IDs.RedstoneWire));
 				} else {
-					p.add(new Pair(x + dx, y + dy, z + dz--));
+					p.add(new Pair(x + dx, y + dy, z + dz--, IDs.RedstoneWire));
 				}
 			}
 			
@@ -86,19 +88,20 @@ public class Pair {
 					p.add(new Pair(x + dx, y + dy, z + dz, IDs.RedstoneWire));
 				}
 			} else {
-				while (y + dy - 2 > expect.y) {
+				while (dy - 1 > expect.y) {
 					//Spiral staircase up to get to targetHeight
 					p.add(new Pair(x + dx++, y + dy--, z + dz, IDs.RedstoneWire));
 					p.add(new Pair(x + dx, y + dy--, z + dz++, IDs.RedstoneWire));
 					p.add(new Pair(x + dx--, y + dy--, z + dz, IDs.RedstoneWire));
 					p.add(new Pair(x + dx, y + dy--, z + dz--, IDs.RedstoneWire));
 				}
-				if (y + dy > expect.y) {
+				if (dy > expect.y) {
 					//Add a stairstep to get it up to targetHeight
 					p.add(new Pair(x + dx++, y + dy--, z + dz, IDs.RedstoneWire));
 					p.add(new Pair(x + dx++, y + dy--, z + dz, IDs.RedstoneWire));
 				}
 			}
+			solution.add(p);
 			
 			targetHeight += 2; //Move the next pair up by 2 blocks
 		}
