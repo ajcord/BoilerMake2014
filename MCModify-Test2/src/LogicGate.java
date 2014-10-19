@@ -39,6 +39,9 @@ public class LogicGate {
 			BlockWriter.setBlock(x+1, y, z+2, IDs.RedstoneTorch, REDSTONE_TORCH_ON_BLOCK_NORTH_SIDE);
 			BlockWriter.setBlock(x+1, y, z+3, IDs.RedstoneWire);//Redstone wire on South, output
 		}
+		System.out.println("AND Input loc: "+x+","+y+","+z);
+		System.out.println("AND Input loc: "+x+2+","+y+","+z);
+		System.out.println("AND Output loc: "+x+1+","+y+","+z+3);
 		
 	}
 	
@@ -54,7 +57,9 @@ public class LogicGate {
 			BlockWriter.setBlock(x+2, y, z, IDs.RedstoneWire);
 			BlockWriter.setBlock(x+2, y, z+2, IDs.RedstoneWire);
 		}
-		
+		System.out.println("OR Input loc: "+x+","+y+","+z);
+		System.out.println("OR Input loc: "+x+2+","+y+","+z);
+		System.out.println("OR Output loc: "+x+1+","+y+","+z+3);
 		
 	}
 	
@@ -62,10 +67,13 @@ public class LogicGate {
 		if( x<0 || y<0 || z<0);
 		else{
 			BlockWriter.setBlock(x, y, z+1, IDs.Sandstone);
-			BlockWriter.setBlock(x, y, z, IDs.RedstoneWire);
+			BlockWriter.setBlock(x, y, z, IDs.RedstoneWire); //input wire
 			BlockWriter.setBlock(x, y, z+2, IDs.RedstoneTorch, REDSTONE_TORCH_ON_BLOCK_NORTH_SIDE);
 			BlockWriter.setBlock(x, y, z+3, IDs.RedstoneWire);
 		}
+		System.out.println("NOT Input loc: "+x+","+y+","+z);
+		System.out.println("NOT Output loc: "+x+","+y+","+z+3);
+		
 		
 	}
 
