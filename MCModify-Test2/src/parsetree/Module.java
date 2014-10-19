@@ -14,13 +14,13 @@ public class Module {
 	static ArrayList<Module> modules = new ArrayList<Module>();
 	static boolean setHead = false;
 	static Module head;
-	int level = -1;
-	int type = -1; // 1 is AND, 2 is OR, 3 is NOT
+	public int level = -1;
+	public int type = -1; // 1 is AND, 2 is OR, 3 is NOT
 	// int width; // Amount of levels it takes up (1 for primitives, more for
 	// complex)
-	String name;
-	ArrayList<Wire> output;
-	ArrayList<Wire> input;
+	public String name;
+	public ArrayList<Wire> output;
+	public ArrayList<Wire> input;
 	public Module(String name, ArrayList<Wire> input, Wire output, int level,
 			int type) {// USED IF PRIMITATIVE TYPE
 		System.out.println("Creating basic module " + name + " with level " + level);
@@ -161,6 +161,7 @@ public class Module {
 		for(int i=0; i<maxLevel+2;i++)modules.add(new ArrayList<Module>());
 		for(Module m : Module.modules) modules.get(m.level).add(m); // 1 line 2-d array by Chong
 		while(modules.get(0).size()!=0) modules.get(0).remove(modules.get(0).size()-1);
+		head.name="HEAD";
 		modules.get(0).add(head);
 		modules.get(maxLevel+1).add(new Module("TAIL", head.input,null,maxLevel + 1, -1));
 		System.out.println("Finished setting moduleLevels!");

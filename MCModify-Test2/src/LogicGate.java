@@ -76,5 +76,16 @@ public class LogicGate {
 		
 		
 	}
+	
+	public static void placeSTARTGateAt(int x, int y, int z, int inputs){
+		if( x < 0 || y < 0 || z < 0 || inputs < 1);
+		else{
+			for(int i = 0; i < inputs; i++){
+				BlockWriter.setBlock(x,y,(z + 2*i), IDs.RedstoneTorch); 
+				BlockWriter.setBlock(x+1,y,(z + 2*i), IDs.RedstoneWire); 
+			}
+			/* Inputs at x+1,y,z+2*2i*/
+		}
+	}
 
 }

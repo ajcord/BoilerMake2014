@@ -42,7 +42,7 @@ public class ParseMain {
 		System.out.println("TIME FOR THE ALMEIGHTY LEVEL TABLE:");
 		ArrayList<ArrayList<Module>> alpaca = head.getLevelArray();
 		for (int i = 0; i < (alpaca).size(); i++) {
-			System.out.println("Row " + i + " contains: ");
+			System.out.println("\nRow " + i + " contains: ");
 			ArrayList<Module> a = alpaca.get(i);
 			for (int j = 0; j < a.size(); j++) {
 				Module foo = a.get(j);
