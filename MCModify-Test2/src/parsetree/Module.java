@@ -15,7 +15,6 @@ public class Module {
 	public static ArrayList<ArrayList<Module>> moduleLevels;
 	static ArrayList<Wire> wires = new ArrayList<Wire>();
 	static ArrayList<Module> modules = new ArrayList<Module>();
-	static ArrayList<Module> heads = new ArrayList<Module>();
 	static boolean setHead = false;
 	static Module head;
 	int level = -1;
@@ -65,10 +64,11 @@ public class Module {
 				name = line.substring(6, firstParen);
 				level = 0;
 				counter++;
-				if (!setHead)
+				if (!setHead) {
 					head = this;
-				setHead = true;
-				// modules.add(this);
+					setHead = true;
+				}
+				// modules.add(this);1
 			} else if (line.substring(0, 3).equals("and")) {
 				makePrimative(line, "and", 1);
 			} else if (line.substring(0, 2).equals("or")) {
@@ -118,12 +118,21 @@ public class Module {
 				// Find and replace one at a time
 				while (readline != null) {
 					System.out.println("Parsing:" + readline);
-					if(readline.indexOf("(")!=-1) printline += replaceString(readline,"(",newParams,params);
-					else if(readline.indexOf("output")!=-1) printline += replaceString(readline,"output",newParams,params);
-					else if(readline.indexOf("input")!=-1) printline += replaceString(readline,"input",newParams,params);
-					else if(readline.indexOf("wire")!=-1) printline += replaceString(readline,"wire",newParams,params);
-					else printline += readline;
-					printline+='\n';
+					if (readline.indexOf("(") != -1)
+						printline += replaceString(readline, "(", newParams,
+								params);
+					else if (readline.indexOf("output") != -1)
+						printline += replaceString(readline, "output",
+								newParams, params);
+					else if (readline.indexOf("input") != -1)
+						printline += replaceString(readline, "input",
+								newParams, params);
+					else if (readline.indexOf("wire") != -1)
+						printline += replaceString(readline, "wire", newParams,
+								params);
+					else
+						printline += readline;
+					printline += '\n';
 					try {
 						readline = brr.readLine();
 					} catch (IOException e) {
@@ -131,10 +140,12 @@ public class Module {
 						e.printStackTrace();
 					}
 				}
-				//Write to the file
+				// Write to the file
 				try {
-					PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(newFile)));
-					System.out.println("Writing the following to the file\n"+printline);
+					PrintWriter pw = new PrintWriter(new BufferedWriter(
+							new FileWriter(newFile)));
+					System.out.println("Writing the following to the file\n"
+							+ printline);
 					pw.println(printline);
 					pw.close();
 				} catch (IOException e) {
@@ -143,6 +154,12 @@ public class Module {
 				}
 				// Now I am ready to step into the function
 				Module newMod = new Module(newFile);
+				for (Wire w : newMod.output) {
+					System.out.print("\n Wire " + w.name + " is an output.\n");
+				}
+				for (Wire w : newMod.input) {
+					System.out.print("\n Wire " + w.name + " is an input.\n");
+				}
 				// if(isHead(newMod)) heads.add(newMod);
 				newMod.name = line.substring(index, line.indexOf("("));
 				linetemp = linetemp.substring(index + (newMod.name.length()),
@@ -150,18 +167,31 @@ public class Module {
 				modules.add(newMod);
 			}
 		}
-		/*
-		 * ArrayList<Module> kiddies; for(int i = 0; i < modules.size(); i++){
-		 * Module temp = modules.get(i); kiddies = temp.getChildren(); for(int j
-		 * = 0; j < kiddies.size(); j++){ if(kiddies.get(j).level <= level){
-		 * kiddies.get(j).level = level + 1; } }
-		 * 
-		 * }
-		 */
-		recurseLongest(head);
 	}
-	
-	public String replaceString(String readline, String deliminator,String[] newParams,String[] params){
+
+	/*
+	 * Returns an arraylist of arraylist of modules where modules.get(0) returns
+	 * a module array representing the zeorth level
+	 */
+	public ArrayList<ArrayList<Module>> getLevelArray() {
+		recurseLongest(head);
+		int maxLevel = -1;
+		for (Module m : Module.modules)
+			if (m.level > maxLevel)
+				maxLevel = m.level;
+		System.out.println("Max Level is: " + maxLevel);
+		ArrayList<ArrayList<Module>> modules = new ArrayList<ArrayList<Module>>(
+				maxLevel + 1);
+		for (int i = 0; i <= maxLevel; i++)
+			modules.add(new ArrayList<Module>());
+		for (Module m : Module.modules)
+			modules.get(m.level).add(m); // 1 line 2-d array by Chong
+		System.out.println("Finished setting moduleLevels!");
+		return modules;
+	}
+
+	public String replaceString(String readline, String deliminator,
+			String[] newParams, String[] params) {
 		// Gets everything to the left of the open parenthesis
 		String left = readline.substring(0, readline.indexOf(deliminator));
 		String right = readline.substring(readline.indexOf(deliminator));
@@ -173,45 +203,48 @@ public class Module {
 
 	public Wire findWire(String name) {
 		for (int i = 0; i < wires.size(); i++)
-			if ((wires.get(i)).name.equals(name)){
-				System.out.println("Found wire "+ wires.get(i).name);
+			if ((wires.get(i)).name.equals(name)) {
+				System.out.println("Found wire " + wires.get(i).name);
 				return wires.get(i);
-				
+
 			}
 		System.out.println("Did not find Wire");
 		return new Wire();
 	}
 
 	public Module makePrimative(String line, String gate, int type) {// or
-		System.out.print("Going to find wire " + name + "\nCurrent wires are: ");
-		for(int a = 0; a < wires.size(); a++)
+		System.out
+				.print("Going to find wire " + name + "\nCurrent wires are: ");
+		for (int a = 0; a < wires.size(); a++)
 			System.out.print(wires.get(a).name + ", ");
 		System.out.println();
 		int i = line.indexOf("(");
-		String mod = line.substring(gate.length(),i);
-		line = line.substring(i+1);
+		String mod = line.substring(gate.length(), i);
+		line = line.substring(i + 1);
 		i = line.indexOf(",");
-		String output = line.substring(0,i);
+		String output = line.substring(0, i);
 		int k = line.indexOf(",");
-		String out = line.substring(0,k);
+		String out = line.substring(0, k);
 		i = line.indexOf(")");
-		line = line.substring(0,i);
-		line = line.substring(k+1,i);
+		line = line.substring(0, i);
+		line = line.substring(k + 1, i);
 		ArrayList<Wire> inputs = createWires(line);
 		System.out.print("Going to find wire " + out + "\nCurrent wires are: ");
-		for(int a = 0; a < wires.size(); a++)
+		for (int a = 0; a < wires.size(); a++)
 			System.out.print(wires.get(a).name + ", ");
 		System.out.println();
 		Wire leaving = findWire(output);
 		ArrayList<Wire> coming = new ArrayList<Wire>();
-		for(i=0; i< inputs.size();i++){
+		for (i = 0; i < inputs.size(); i++) {
 			System.out.println("Wire is: " + inputs.get(i).name);
 			coming.add(findWire((inputs.get(i)).name));
 		}
-		Module primative = new Module(mod,coming, leaving,this.level+1,type);
+		Module primative = new Module(mod, coming, leaving, this.level + 1,
+				type);
 		modules.add(primative);
-		for(i = 0; i < primative.input.size(); i++){
-			System.out.println("primative.input.size() = " + primative.input.size());
+		for (i = 0; i < primative.input.size(); i++) {
+			System.out.println("primative.input.size() = "
+					+ primative.input.size());
 			System.out.println("i = " + i);
 			Wire j = (primative.input).get(i);
 			ArrayList<Module> m = j.goingTo;
@@ -228,7 +261,9 @@ public class Module {
 			line = line.substring(0, line.indexOf(";"));
 		ArrayList<Wire> newwires = createWires(line);
 		for (int i = 0; i < newwires.size(); i++) {
-			wires.add(newwires.get(i));
+			Wire tempwire = newwires.get(i);
+			if ((findWire(tempwire.name).name).equals("NONE AVAILABLE"))
+				wires.add(tempwire);
 		}
 		return newwires;
 	}
@@ -237,7 +272,8 @@ public class Module {
 		ArrayList<Wire> nwires = new ArrayList<Wire>();
 		String[] split = line.split(",");
 		for (int i = 0; i < split.length; i++) {
-			nwires.add(new Wire(split[i]));//How do we make sure we do not create 2 wires
+			nwires.add(new Wire(split[i]));// How do we make sure we do not
+											// create 2 wires
 		}
 		return nwires;
 	}/*
@@ -271,7 +307,11 @@ public class Module {
 		} else {
 			ArrayList<Integer> parentlevel = new ArrayList<Integer>();
 			for (int i = 0; i < input.size(); i++) {
-				parentlevel.add(getParent(input.get(i)).level);
+				Module w = getParent(input.get(i));
+				System.out.println("Getting parent from wire "
+						+ input.get(i).name);
+				int y = w.level;
+				parentlevel.add(y);
 			}
 			Integer plevel = Collections.max(parentlevel);
 			node.level = plevel + 1;

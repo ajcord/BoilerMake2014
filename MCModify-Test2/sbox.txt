@@ -6,5 +6,3 @@ module sbox(w4,b,e,w3);
 	not		n7(w4,l1);
 endmodule
 
-
-
