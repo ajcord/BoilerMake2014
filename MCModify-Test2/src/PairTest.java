@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class PairTest {
 
 	public static void main(String[] args) {
-		int test = 3;
+		int test = 1;
 		switch(test) {
 		case 1:
 			testSimpleMapping();
@@ -57,7 +57,7 @@ public class PairTest {
 			start.add(new Pair(0, 56, 3*i));
 			start.add(new Pair(0, 56, 3*i));
 		}
-		for (int i = 15; i > 0; i--) {
+		for (int i = 14; i > 0; i--) {
 			finish.add(new Pair(10, 56, 3*i));
 		}
 		ArrayList<ArrayList<Pair>> results = Pair.crossingProblem(start, finish);

@@ -7,7 +7,7 @@ import parsetree.*;
 public class MCVerilog {
 
 	public static void main(String[] args) {
-		String filepath = "nor.v";
+		String filepath = "sc_block.txt";
 		Module head = new Module(filepath);
 		ArrayList<ArrayList<Module>> levelArray = head.getLevelArray();
 		levelArray = Module.improvedLevelArray(levelArray);
@@ -50,7 +50,7 @@ public class MCVerilog {
 				BlockWriter.saveChunk();
 
 				first.addAll(locations);
-				
+				/*
 				for(int k = 0; k < currentModule.output.size(); k++) {
 					Wire currentWire = currentModule.output.get(k);
 					int dz = 0;
@@ -68,8 +68,9 @@ public class MCVerilog {
 						}
 					}
 				}
+				System.out.println(first.toString()+", "+second.toString());
 				ArrayList<ArrayList<Pair>> results = Pair.crossingProblem(first, second);
-				Interpreter.Interpret(results);
+				Interpreter.Interpret(results);*/
 			}
 			x += 16;
 			z = 0;
