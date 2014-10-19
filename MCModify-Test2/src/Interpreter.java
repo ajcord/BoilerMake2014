@@ -15,6 +15,7 @@ public class Interpreter {
 				Pair point = input.get(i).get(j);
 				BlockWriter.loadChunk(point.x, point.y, point.z);
 				BlockWriter.setBlock(point.x, point.y, point.z, IDs.Sandstone);
+<<<<<<< HEAD
 				if (point.topBlock == IDs.RedstoneRepeater
 						|| point.topBlock == IDs.RedstoneRepeaterOff) {
 					BlockWriter.setBlock(point.x, point.y + 1, point.z,
@@ -25,6 +26,15 @@ public class Interpreter {
 							point.topBlock);
 				}
 				BlockWriter.saveChunk();
+=======
+				if(point.topBlock == IDs.RedstoneRepeater)
+					BlockWriter.setBlock(point.x, point.y + 1, point.z, IDs.RedstoneRepeaterOff, (byte) 0); //north-south
+				//byte 1 implies repeater facing east
+				else if (point.topBlock == IDs.RedstoneRepeaterOff)
+					BlockWriter.setBlock(point.x, point.y + 1, point.z, IDs.RedstoneRepeaterOff, (byte) 1); //east-west
+				else
+					BlockWriter.setBlock(point.x, point.y + 1, point.z, point.topBlock);
+>>>>>>> FETCH_HEAD
 			}
 		}
 
