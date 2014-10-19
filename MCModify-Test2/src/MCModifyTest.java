@@ -25,21 +25,9 @@ public class MCModifyTest
 	
 	public static void main(String[] args) throws Throwable
 	{
-		/*
-		for (int k = 20; k < 50; k++) {
-			for (int m = 20; m < 50; m++) {
-				BlockWriter.loadChunk(k*16, 0, m*16);
-				for (int i = 0; i < 16; i++) {
-					for (int j = 0; j < 16; j++) {
-						BlockWriter.setBlock(k*16 + i, 56, m*16 + j, IDs.BlockOfEmerald);
-					}
-				}
-				BlockWriter.saveChunk();
-			}
-		}
-		*/
 		
 		BlockWriter.loadChunk(0, 0, 0);
+<<<<<<< HEAD
 		/*
 		for (int x = 1; x < 8; x += 2) {
 			
@@ -76,37 +64,18 @@ public class MCModifyTest
 		x=11; y=56; z= 5;
 		//logicGate.placeORGateAt(x,y,z);
 		
+=======
+>>>>>>> FETCH_HEAD
 		
+		int x;int y=56; int z= 3;
+		for (x=0; x< 6; x++){
+			BlockWriter.setBlock(x, y, z, IDs.RedstoneRepeater, (byte) 1); //1 indicates repeater facing east
+			BlockWriter.setBlock(x, y, z+1, IDs.RedstoneRepeater, (byte) 1);
+			BlockWriter.setBlock(x, y, z+2, IDs.RedstoneRepeater, (byte) 1);
+			BlockWriter.setBlock(x, y, z+3, IDs.RedstoneRepeater, (byte) 1);
+		}
 		
 		BlockWriter.saveChunk();
 			
-		/*
-		final Level level;
-		
-		FileInputStream fis = new FileInputStream(TestingUtils.getInputFile("level.dat"));
-		try
-		{
-			level = new Level((Tag.Compound)Tag.deserialize(CompressionScheme.GZip.getInputStream(fis)));
-		}
-		finally{
-			
-		}
-
-		Level.Player player = level.Player();
-		player.PosY(100.0);
-		player.Flying(true);
-		Inventory i = player.Inventory();
-		Inventory.Item item = new Inventory.Item(WrittenBook, 0, 1);
-		item.Title("Ethonian Battle Book");
-		item.Author("Vechs");
-		item.Pages().add("��4As you hold this book, you feel the power to ��lincenerate��r��4 your enemies!");
-		item.EnchantLevel(Inventory.Item.Enchantment.FireAspect, (short)2);
-		i.Item(7, item);
-
-		try(FileOutputStream fos = new FileOutputStream(TestingUtils.getOutputFile("level.dat")))
-		{
-			level.ToNBT("").serialize(CompressionScheme.GZip.getOutputStream(fos));
-		}
-		*/
 	}
 }

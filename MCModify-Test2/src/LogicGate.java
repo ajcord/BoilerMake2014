@@ -2,7 +2,7 @@ import minecraft.BlockWriter;
 import minecraft.IDs;
 
 
-public class logicGate {
+public class LogicGate {
 
 	final static byte LEVER_BLOCK_BOTTOM_FACING_EAST=0;
 	final static byte LEVER_BLOCK_SIDE_FACING_EAST=1;
@@ -20,7 +20,7 @@ public class logicGate {
 	final static byte REDSTONE_TORCH_ON_BLOCK_SOUTH_SIDE=4;
 	final static byte REDSTONE_TORCH_ON_BLOCK_BOTTOM=5;
 	
-	public logicGate(){
+	public LogicGate(){
 		System.out.println("Logic gate made.");
 	}
 	
@@ -68,17 +68,5 @@ public class logicGate {
 		}
 		
 	}
-/*	
-	private logicGate AND(){
-		BlockWriter.setBlock(3, 56, 1, IDs.Sandstone);
-	}
-	
-	private logicGate OR(){
-		
-	}
 
-	private logicGate NOT(){
-	
-	}
-	*/
 }

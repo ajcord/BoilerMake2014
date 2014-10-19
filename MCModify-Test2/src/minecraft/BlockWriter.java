@@ -107,4 +107,18 @@ public class BlockWriter {
 			}
 		}
 	}
+
+	public static void setBlock(int x, int y, int z, int blockID,
+			byte data) {
+		setBlock(x, y, z, (short) blockID);
+		if (currentChunk != null) {
+			currentChunk.BlockData(x, y, z, data);
+		}
+		
+	}
+	
+	public static void setBlock(int x, int y, int z, int blockID) {
+		setBlock(x, y, z, (short) blockID);
+		
+	}
 }
