@@ -98,6 +98,17 @@ public class LogicGate {
 		System.out.println("NOT Output loc: " + (x + 5) + "," + y + "," + z);
 
 	}
+	
+	public static void placeTHRUGateAt(int x, int y, int z) {
+		if (x < 0 || y < 0 || z < 0)
+			;
+		else {
+			for (int i = 0; i < 5; i++) {
+				BlockWriter.setBlock(x + i, y, z, IDs.RedstoneWire);
+			}
+		}
+		
+	}
 
 	public static void placeSTARTGateAt(int x, int y, int z, int inputs) {
 		if (x < 0 || y < 0 || z < 0 || inputs < 1)

@@ -22,6 +22,7 @@ public class MCVerilog {
 			for (int j = 0; j < levelArray.get(i).size(); j++) {
 				ArrayList<Pair> locations = new ArrayList<Pair>();
 				BlockWriter.loadChunk(x, y, z);
+				
 				// Connect level n-1 to n
 				Module currentModule = levelArray.get(i).get(j);
 				if (currentModule.type == 1) {
@@ -34,6 +35,10 @@ public class MCVerilog {
 					z += 6;
 				} else if (currentModule.type == 3) {
 					LogicGate.placeNOTGateAt(x, y, z);
+					locations.add(new Pair(x + 5, y, z));
+					z += 3;
+				} else if (currentModule.type == 4) {
+					LogicGate.placeTHRUGateAt(x, y, z);
 					locations.add(new Pair(x + 5, y, z));
 					z += 3;
 				} else if (currentModule == head) {
