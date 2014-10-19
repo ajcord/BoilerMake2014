@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Module {
-	static ArrayList<ArrayList<Module>> moduleLevels;
+	public static ArrayList<ArrayList<Module>> moduleLevels;
 	static ArrayList<Wire> wires = new ArrayList<Wire>();
 	static ArrayList<Module> modules = new ArrayList<Module>();
 	static ArrayList<Module> heads = new ArrayList<Module>();
@@ -26,6 +26,7 @@ public class Module {
 	ArrayList<Wire> output;
 	ArrayList<Wire> input;
 
+	@SuppressWarnings("unchecked")
 	public Module(String name, ArrayList<Wire> input, Wire output, int level,
 			int type) {// USED IF PRIMITATIVE TYPE
 		this.level = level;
@@ -42,7 +43,6 @@ public class Module {
 		try {
 			br = new BufferedReader(new FileReader(file));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String line = "Great Scott";
@@ -50,7 +50,6 @@ public class Module {
 			try {
 				line = br.readLine();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			String linetemp = line;
