@@ -1,0 +1,11 @@
+module full_adder(sum, cout, a, b, cin);
+	output sum, cout;
+	input a, b, cin;
+	wire partial_s, partial_c1, partial_c2;
+
+	xor x0(partial_s, a, b);
+	xor x1(sum, partial_s, cin);
+	and a0(partial_c1, a, b);
+	and a0(partial_c2, partial_s, cin);
+	or o1(cout, partial_c1, partial_c2);
+endmodule
