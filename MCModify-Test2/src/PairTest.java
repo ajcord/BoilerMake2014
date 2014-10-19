@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class PairTest {
 
 	public static void main(String[] args) {
-		int test = 1;
+		int test = 2;
 		switch(test) {
 		case 1:
 			testSimpleMapping();
