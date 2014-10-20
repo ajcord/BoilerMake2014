@@ -1,12 +1,13 @@
-module sbox(f, a, b, c);
-	output	f;
-	input	a, b, c;
+module sbox(w4,b,e,w3);
+	output	w4;
+	input	a,e,w3;
 	wire	not_b, w1, w2;
-	not     n1(not_b, b);
-	and		a1(w1, a, b);
-	and     a2(w2, not_b, c);
-	or		o1(f, w1, w2);
+	not     n1(not_b,e);
+	and		a1(w1,b,e);
+	and     a2(w2, not_b,w3);
+	or		o1(w4, w1, w2);
 endmodule
+
 
 
 
